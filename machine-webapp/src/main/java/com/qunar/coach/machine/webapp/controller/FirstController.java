@@ -1,5 +1,7 @@
 package com.qunar.coach.machine.webapp.controller;
 
+import com.qunar.coach.machine.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,10 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/api")
 public class FirstController {
 
+    @Autowired
+    private TestService testService;
+
     @RequestMapping(value = "/v1/hello", method = RequestMethod.GET)
     @ResponseBody
     public String getVideoBeanList(
             @RequestParam(value = "name", required = false, defaultValue = "") String name) {
-        return "Hello " + name;
+        return testService.returnTest() + name;
     }
 }
