@@ -123,10 +123,6 @@
                             <includes>.*</includes>
                             <excludes>xdual</excludes>
                             <inputSchema>qunar</inputSchema>
-                            <customTypes>
-                            </customTypes>
-                            <forcedTypes>
-                            </forcedTypes>
                         </database>
                         <target>
                             <packageName>com.qunar.coach.machine.dao.model</packageName>

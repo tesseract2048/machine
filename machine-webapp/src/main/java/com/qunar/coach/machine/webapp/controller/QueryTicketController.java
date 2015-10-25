@@ -1,16 +1,20 @@
 package com.qunar.coach.machine.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import com.qunar.coach.machine.core.TicketBean;
 import com.qunar.coach.machine.service.MachineService;
+import com.qunar.coach.machine.service.PersonIDService;
 import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -24,7 +28,11 @@ public class QueryTicketController {
     @Resource
     private MachineService machineService;
 
-    @RequestMapping("/api/v1/query_ticket")
+    @Autowired
+    private PersonIDService personIDService;
+
+
+    @RequestMapping(value = "/api/v1/query_ticket", method = RequestMethod.GET)
     public List<TicketBean> getVideoBeanList(
             @RequestParam(value = MachineRequestParameter.MACHINE_ID,
                     required = true, defaultValue = "") String machineId,
@@ -61,6 +69,7 @@ public class QueryTicketController {
          * 2. ticket status should be right. we plan to use consistent hash table to obtain the data consistent.
          * */
 
-        return null;
+        personIDService.addPerson(cardId, cardName, cardNation);
+        return new ArrayList<>();
     }
 }

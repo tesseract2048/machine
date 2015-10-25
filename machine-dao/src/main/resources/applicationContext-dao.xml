@@ -11,131 +11,62 @@
 
     <context:component-scan base-package="com.qunar.coach.machine.dao"/>
 
-    <!-- Transaction manager  -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${db.driverName}" />
+        <property name="jdbcUrl" value="${db.url}" />
+        <property name="user" value="${db.username}" />
+        <property name="password" value="${db.password}" />
+        <property name="initialPoolSize" value="3" />
+        <property name="minPoolSize" value="3" />
+        <property name="maxPoolSize" value="20" />
+        <property name="autoCommitOnClose" value="true" />
+        <property name="testConnectionOnCheckin" value="true" />
+        <property name="checkoutTimeout" value="5000" />
+        <property name="idleConnectionTestPeriod" value="200" />
+        <property name="acquireIncrement" value="1" />
+        <property name="maxIdleTime" value="25200" />  <!-- How long to keep unused connections around. MySQL times out idle connections after 8 hours(28,800 seconds), so ensure this value is below MySQL idle timeout-->
+        <property name="maxIdleTimeExcessConnections" value="1800" />  <!-- How long to hang on to excess unused connections after traffic spike  -->
+        <property name="maxStatements" value="0" />  <!-- 0 means: statement caching is turned off.  -->
+        <property name="preferredTestQuery" value="select 1;" />
+    </bean>
+
+    <!-- Configure Spring's transaction manager to use a DataSource -->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <bean id="transactionTemplate"
-          class="org.springframework.transaction.support.TransactionTemplate">
-        <property name="transactionManager" ref="transactionManager"/>
-        <property name="isolationLevelName" value="ISOLATION_READ_UNCOMMITTED"/>
-    </bean>
-
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="ignoreUnresolvablePlaceholders" value="true"/>
-        <property name="locations">
-            <list>
-                <value>classpath:${jdbc.properties}</value>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close">
-        <property name="driverClass" value="${database.driverClassName}"/>
-        <property name="jdbcUrl" value="${database.url}"/>
-        <property name="user" value="${database.userName}"/>
-        <property name="password" value="${database.password}"/>
-        <property name="initialPoolSize">
-            <value>3</value>
-        </property>
-        <property name="minPoolSize">
-            <value>3</value>
-        </property>
-        <property name="maxPoolSize">
-            <value>20</value>
-        </property>
-        <property name="autoCommitOnClose">
-            <value>true</value>
-        </property>
-        <property name="testConnectionOnCheckin">
-            <value>true</value>
-        </property>
-        <property name="checkoutTimeout">
-            <value>5000</value>
-        </property>
-        <!-- Time to wait for an open connection before timing out -->
-        <property name="idleConnectionTestPeriod">
-            <value>200</value>
-        </property>
-        <property name="acquireIncrement">
-            <value>1</value>
-        </property>
-        <property name="maxIdleTime">
-            <value>25200</value>
-        </property>
-        <!-- How long to keep unused connections around. MySQL times out idle connections
-                 after 8 hours(28,800 seconds), so ensure this value is below MySQL idle timeout -->
-        <property name="maxIdleTimeExcessConnections">
-            <value>1800</value>
-        </property>
-        <!-- How long to hang on to excess unused connections after traffic spike -->
-        <property name="maxStatements">
-            <value>0</value>
-        </property>
-        <!-- 0 means: statement caching is turned off. -->
-        <property name="numHelperThreads">
-            <value>3</value>
-        </property>
-        <!-- 3 is default -->
-        <property name="preferredTestQuery">
-            <value>select 1;</value>
-        </property>
+        <property name="dataSource" ref="dataSource" />
     </bean>
 
     <!-- Configure jOOQ's ConnectionProvider to use Spring's TransactionAwareDataSourceProxy,
          which can dynamically discover the transaction context -->
     <bean id="transactionAwareDataSource"
           class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
-        <constructor-arg ref="dataSource"/>
+        <constructor-arg ref="dataSource" />
     </bean>
 
-    <bean id="connectionProvider"
-          class="org.jooq.impl.DataSourceConnectionProvider">
-        <constructor-arg ref="transactionAwareDataSource"/>
+    <bean id="connectionProvider" class="org.jooq.impl.DataSourceConnectionProvider" >
+        <constructor-arg ref="transactionAwareDataSource" />
     </bean>
 
     <!-- Invoking an internal, package-private constructor for the example
              Implement your own Configuration for more reliable behaviour -->
     <bean id="jooqConfig" class="org.jooq.impl.DefaultConfiguration">
-        <constructor-arg index="0" ref="connectionProvider"/>
+        <constructor-arg index="0" ref="connectionProvider" />
         <!-- Pass in your jOOQ TransactionProvider if you want to use jOOQ's transaction API -->
-        <constructor-arg index="1">
-            <null/>
-        </constructor-arg>
-        <constructor-arg index="2">
-            <null/>
-        </constructor-arg>
-        <constructor-arg index="3">
-            <null/>
-        </constructor-arg>
-        <constructor-arg index="4">
-            <null/>
-        </constructor-arg>
-        <constructor-arg index="5">
-            <null/>
-        </constructor-arg>
-        <constructor-arg index="6">
-            <value type="org.jooq.SQLDialect">MYSQL</value>
-        </constructor-arg>
-        <constructor-arg index="7">
-            <null/>
-        </constructor-arg>
-        <constructor-arg index="8">
-            <null/>
-        </constructor-arg>
+        <constructor-arg index="1"><null /></constructor-arg>
+        <constructor-arg index="2"><null /></constructor-arg>
+        <constructor-arg index="3"><null /></constructor-arg>
+        <constructor-arg index="4"><null /></constructor-arg>
+        <constructor-arg index="5"><null /></constructor-arg>
+        <constructor-arg index="6"><value type="org.jooq.SQLDialect">MYSQL</value></constructor-arg>
+        <constructor-arg index="7"><null /></constructor-arg>
+        <constructor-arg index="8"><null /></constructor-arg>
     </bean>
 
     <!-- Configure the DSL object, optionally overriding jOOQ Exceptions with Spring Exceptions -->
     <bean id="jooqContext" class="org.jooq.impl.DefaultDSLContext">
         <constructor-arg ref="jooqConfig" />
     </bean>
-
+    <bean id="identityDao" class="com.qunar.coach.machine.dao.model.tables.daos.IdentityCardDao">
+        <constructor-arg ref="jooqConfig"/>
+    </bean>
 </beans>
