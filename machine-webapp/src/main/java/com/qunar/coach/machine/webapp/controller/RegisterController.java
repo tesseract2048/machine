@@ -24,7 +24,7 @@ public class RegisterController {
     private MachineService machineService;
 
     @RequestMapping("/api/v1/register")
-    public String getVideoBeanList(
+    public String registerVideoBeanList(
             @RequestParam(value = MachineRequestParameter.PROVINCE,
                     required = false, defaultValue = "") String province,
             @RequestParam(value = MachineRequestParameter.CITY,
@@ -33,7 +33,7 @@ public class RegisterController {
                     required = false, defaultValue = "") String stationName) {
 
         //TODO: check param
-        Date timeStamp = null;
+        Date timeStamp = new Date();
         String newMachineId =  machineService.generateMachineId(province, city, stationName, timeStamp);
 
         //TODO: save newMachineId into mysql.

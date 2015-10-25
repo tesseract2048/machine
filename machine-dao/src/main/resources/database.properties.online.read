@@ -1,0 +1,4 @@
+db.driverName=com.mysql.jdbc.Driver
+db.url=jdbc:mysql://10.0.11.240:8077/baobab?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;jdbcCompliantTruncation=false
+db.username=baobab3x_r
+db.password=eMuiCzyWPU9SnwaQD4NsrPtq7bXEiBGi

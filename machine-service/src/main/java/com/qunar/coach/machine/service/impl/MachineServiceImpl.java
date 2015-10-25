@@ -13,7 +13,7 @@ import java.util.Date;
 public class MachineServiceImpl implements MachineService {
     @Override
     public String generateMachineId(String province, String city, String stationName, Date timeStamp) {
-        return null;
+        return province + ":" + city + ":" + stationName;
     }
 
     @Override
