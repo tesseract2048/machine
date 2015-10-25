@@ -4,6 +4,7 @@ import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 /**
  * Created by niuli on 15-10-21.
  */
+@Controller
 public class AdminController {
     private static final Logger LOG = LoggerFactory.getLogger(AdminController.class);
 

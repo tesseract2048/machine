@@ -4,18 +4,19 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
-import com.qunar.coach.machine.service.MachineService;
-import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.qunar.coach.machine.service.MachineService;
+import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 
 /**
  * Created by niuli on 15-10-21.
  */
-@RestController
+@Controller
 public class RegisterController {
     private static final Logger LOG = LoggerFactory.getLogger(RegisterController.class);
 
