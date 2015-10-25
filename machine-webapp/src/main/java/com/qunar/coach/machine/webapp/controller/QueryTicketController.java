@@ -1,17 +1,16 @@
-package com.wandoujia.baobab.webapp.controller;
+package com.qunar.coach.machine.webapp.controller;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.qunar.coach.machine.service.MachineService;
+import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.wandoujia.baobab.bean.TicketBean;
-import com.wandoujia.baobab.constant.MachineRequestParameter;
-import com.wandoujia.baobab.service.common.MachineService;
 
 /**
  * Created by niuli on 15-10-21.

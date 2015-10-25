@@ -1,8 +1,7 @@
-package com.wandoujia.baobab.webapp.controller;
+package com.qunar.coach.machine.webapp.controller;
 
-import com.wandoujia.baobab.bean.TicketBean;
-import com.wandoujia.baobab.constant.MachineRequestParameter;
-import com.wandoujia.baobab.service.common.MachineService;
+import com.qunar.coach.machine.service.MachineService;
+import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,8 @@ import java.util.List;
 /**
  * Created by niuli on 15-10-21.
  */
-public class QueryTicketController {
-    private static final Logger LOG = LoggerFactory.getLogger(QueryTicketController.class);
+public class QueryTicketIdController {
+    private static final Logger LOG = LoggerFactory.getLogger(QueryTicketIdController.class);
 
     @Resource
     private MachineService machineService;

@@ -11,6 +11,13 @@
 
     <artifactId>machine-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.qunar.coach</groupId>
+            <artifactId>machine-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <defaultGoal>install</defaultGoal>

@@ -1,7 +1,7 @@
-package com.wandoujia.baobab.webapp.controller;
+package com.qunar.coach.machine.webapp.controller;
 
-import com.wandoujia.baobab.constant.MachineRequestParameter;
-import com.wandoujia.baobab.service.common.MachineService;
+import com.qunar.coach.machine.service.MachineService;
+import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;

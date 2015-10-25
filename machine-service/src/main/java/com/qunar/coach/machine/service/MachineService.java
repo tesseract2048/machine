@@ -1,8 +1,9 @@
-package com.wandoujia.baobab.service.common;
+package com.qunar.coach.machine.service;
+
+import com.qunar.coach.machine.core.MachineStatus;
 
 import java.util.Date;
 
-import com.wandoujia.baobab.model.MachineStatus;
 
 /**
  * Created by niuli on 15-10-21.
