@@ -1,0 +1,5 @@
+wcdn.baobab.prefix = baobab.cdn.wandoujia.com/
+cdn.upload.temp.dir = /tmp/upload/
+
+# Snowflake
+snowflake.worker_ids=localhost=0,pre-hps-oscar-bgp0.hy01=3

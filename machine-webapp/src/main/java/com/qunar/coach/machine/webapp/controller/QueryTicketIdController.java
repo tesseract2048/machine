@@ -1,5 +1,6 @@
 package com.qunar.coach.machine.webapp.controller;
 
+import com.qunar.coach.machine.core.TicketBean;
 import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.slf4j.Logger;

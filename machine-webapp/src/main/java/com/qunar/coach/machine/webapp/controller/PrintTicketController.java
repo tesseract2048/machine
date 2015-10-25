@@ -8,10 +8,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.qunar.coach.machine.core.TicketBean;
 import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Created by niuli on 15-10-21.
  */
+@Controller
 public class PrintTicketController {
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
 

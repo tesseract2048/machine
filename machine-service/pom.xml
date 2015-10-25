@@ -21,9 +21,9 @@
 
     <build>
         <defaultGoal>install</defaultGoal>
-        <!--<filters>-->
-            <!--<filter>src/main/resources/filter.properties.${env}</filter>-->
-        <!--</filters>-->
+        <filters>
+            <filter>src/main/resources/filter.properties.${env}</filter>
+        </filters>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
