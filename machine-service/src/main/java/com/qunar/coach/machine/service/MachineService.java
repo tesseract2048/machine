@@ -1,6 +1,7 @@
 package com.qunar.coach.machine.service;
 
 import com.qunar.coach.machine.core.MachineStatus;
+import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 
 import java.util.Date;
 
@@ -10,15 +11,9 @@ import java.util.Date;
  */
 public interface MachineService {
 
-    /**
-     * to gererate machineId
-     * @param province String
-     * @param city String
-     * @param stationName String
-     * @param timeStamp Date
-     * @return String
-     */
-    String generateMachineId(String province, String city, String stationName, Date timeStamp);
+    Machine addMachine(Machine machine);
+
+    String generateMachineId(Machine machine);
 
     /**
      * get machine status

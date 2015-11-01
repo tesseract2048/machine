@@ -7,6 +7,8 @@ import com.qunar.coach.machine.dao.model.tables.pojos.IdentityCard;
 import com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord;
 import com.qunar.coach.machine.service.JooqService;
 import com.qunar.coach.machine.service.PersonIDService;
+import com.qunar.coach.machine.service.utils.RecordMapperUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +22,24 @@ public class PersonIDServiceImpl extends JooqService implements PersonIDService 
 
     @Override
     public int addPerson(String cardId, String name, String nation) {
-        IdentityCard identityCard = new IdentityCard();
+        IdentityCardRecord identityCard = new IdentityCardRecord();
 
         identityCard.setCardId(cardId);
         identityCard.setName(name);
         identityCard.setNation(nation);
 
-//        getContext().insertInto(IDENTITY_CARD).set(identityCard).execute();
-        identityCardDao.insert(identityCard);
+        int ret = getContext().insertInto(IDENTITY_CARD).set(identityCard).onDuplicateKeyIgnore().execute();
         return 0;
+    }
+
+    @Override
+    public int addPerson(IdentityCard identityCard) {
+        IdentityCardRecord identityCardRecord = toRecord(identityCard);
+
+        return getContext().insertInto(IDENTITY_CARD).set(identityCardRecord).onDuplicateKeyIgnore().execute();
+    }
+
+    private IdentityCardRecord toRecord(IdentityCard identityCard) {
+        return RecordMapperUtils.mapObject(identityCard, IdentityCardRecord.class);
     }
 }

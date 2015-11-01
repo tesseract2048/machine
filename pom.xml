@@ -192,11 +192,6 @@
                 <artifactId>commons-io</artifactId>
                 <version>${org.apache.commons.commons-io.version}</version>
             </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
-            </dependency>
             <!-- cache -->
             <dependency>
                 <groupId>redis.clients</groupId>
@@ -250,10 +245,15 @@
                 <version>1.16.4</version>
             </dependency>
         </dependencies>
-
     </dependencyManagement>
 
     <dependencies>
+
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>servlet-api</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>

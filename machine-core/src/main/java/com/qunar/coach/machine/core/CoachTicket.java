@@ -1,4 +1,4 @@
-package com.qunar.coach.machine.core.model;
+package com.qunar.coach.machine.core;
 
 import lombok.Data;
 import lombok.NonNull;

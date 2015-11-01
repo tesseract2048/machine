@@ -12,7 +12,9 @@
 
     <import resource="applicationContext-service.xml"/>
     <context:annotation-config/>
-    <context:component-scan base-package="com.qunar.coach.machine.webapp"/>
+    <context:component-scan base-package="com.qunar.coach.machine.webapp">
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.JsonViewResponseBodyAdvice"/>
 

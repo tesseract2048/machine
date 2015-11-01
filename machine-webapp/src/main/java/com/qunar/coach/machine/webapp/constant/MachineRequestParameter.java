@@ -33,6 +33,6 @@ public class MachineRequestParameter {
 
     public static final String TICKET_ID = "ticketId";
 
-
+    public static final String PRINT_MODE = "printMode";
 }
 

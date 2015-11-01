@@ -69,4 +69,7 @@
     <bean id="identityDao" class="com.qunar.coach.machine.dao.model.tables.daos.IdentityCardDao">
         <constructor-arg ref="jooqConfig"/>
     </bean>
+    <bean id="machineDao" class="com.qunar.coach.machine.dao.model.tables.daos.MachineDao">
+        <constructor-arg ref="jooqConfig"/>
+    </bean>
 </beans>

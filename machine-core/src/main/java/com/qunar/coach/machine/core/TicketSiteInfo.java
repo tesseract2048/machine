@@ -1,5 +1,7 @@
 package com.qunar.coach.machine.core;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -7,6 +9,8 @@ import java.util.Date;
 /**
  * Created by niuli on 15-10-21.
  */
+@Data
+@Deprecated
 public class TicketSiteInfo implements Serializable {
     private static final long serialVersionUID = -1244770353544973701L;
 
@@ -98,6 +102,4 @@ public class TicketSiteInfo implements Serializable {
     private Integer minLimit;// 最少距离开车前多少分钟可以购票(+缓冲)
 
     private String md5str;
-
-
 }
