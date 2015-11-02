@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
  * Created by zhangyunfan on 15-11-1.
  */
 @Data
-@AllArgsConstructor
 public class APIResponse<T> {
     private int code;
     private String msg;
@@ -16,6 +15,12 @@ public class APIResponse<T> {
 
     public APIResponse() {
         this.code = APIResponse.suc;
+    }
+
+    public APIResponse(int code, String msg, T t) {
+        this.code = code;
+        this.msg = msg;
+        this.t = t;
     }
 
     public static final int suc = 0;
