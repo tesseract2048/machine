@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by zhangyunfan on 15-3-30.
+ * Created by niuli on 15-3-30.
  */
 @ControllerAdvice
 @Slf4j
