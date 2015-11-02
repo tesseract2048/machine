@@ -1,7 +1,6 @@
 package com.qunar.coach.machine.core;
 
 import lombok.Data;
-import lombok.NonNull;
 
 /**
  * Created by niuli on 15-10-30.
