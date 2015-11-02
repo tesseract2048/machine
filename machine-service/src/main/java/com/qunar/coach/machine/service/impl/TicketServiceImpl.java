@@ -19,7 +19,7 @@ import static com.qunar.coach.machine.dao.model.tables.TicketPrintInfo.TICKET_PR
 
 
 /**
- * Created by zhangyunfan on 15-11-1.
+ * Created by niuli on 15-11-1.
  */
 @Service
 @Slf4j

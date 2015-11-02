@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 /**
- * Created by zhangyunfan on 15-11-1.
+ * Created by niuli on 15-11-1.
  */
 public class MachineIdValidator implements Validator {
     @Override

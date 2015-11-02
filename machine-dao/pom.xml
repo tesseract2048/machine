@@ -123,7 +123,7 @@
                             <includes>.*</includes>
                             <excludes>xdual</excludes>
                             <!--database name-->
-                            <inputSchema>qunar</inputSchema>
+                            <inputSchema>coach</inputSchema>
                             <customTypes>
                                 <customType>
                                     <name>com.qunar.coach.machine.core.MachineStatus</name>

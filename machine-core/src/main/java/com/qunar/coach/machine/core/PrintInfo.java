@@ -3,7 +3,7 @@ package com.qunar.coach.machine.core;
 import lombok.Data;
 
 /**
- * Created by zhangyunfan on 15-11-1.
+ * Created by niuli on 15-11-1.
  */
 @Data
 public class PrintInfo {

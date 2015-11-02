@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by zhangyunfan on 15-6-19.
+ * Created by niuli on 15-6-19.
  */
 @Service
 public abstract class JooqService {

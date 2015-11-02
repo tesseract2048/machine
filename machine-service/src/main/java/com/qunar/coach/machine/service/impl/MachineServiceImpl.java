@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by zhangyunfan on 15-10-25.
+ * Created by niuli on 15-10-25.
  */
 @Service
 public class MachineServiceImpl extends JooqService implements MachineService {

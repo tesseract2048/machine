@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by zhangyunfan on 15-11-1.
+ * Created by niuli on 15-11-1.
  */
 @Controller
 @RequestMapping("/api/v1/machine")

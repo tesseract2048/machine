@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Created by zhangyunfan on 15-11-1.
+ * Created by niuli on 15-11-1.
  */
 @Data
 public class APIResponse<T> {

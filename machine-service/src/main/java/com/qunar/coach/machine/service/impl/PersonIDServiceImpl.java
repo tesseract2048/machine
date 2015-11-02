@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by zhangyunfan on 15-10-26.
+ * Created by niuli on 15-10-26.
  */
 @Service
 public class PersonIDServiceImpl extends JooqService implements PersonIDService {

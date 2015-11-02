@@ -6,7 +6,7 @@ import com.qunar.coach.machine.core.TicketBean;
 import java.util.List;
 
 /**
- * Created by zhangyunfan on 15-11-1.
+ * Created by niuli on 15-11-1.
  */
 public interface TicketService {
     TicketBean getUnPrintTicketBeanById(int ticketId);
