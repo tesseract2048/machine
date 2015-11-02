@@ -4,13 +4,13 @@ package com.qunar.coach.machine.core;
  * Created by niuli on 15-11-1.
  */
 public class APIException extends RuntimeException {
-    private APIResponse<Void> apiResponse;
+    private APIResponse<String> apiResponse;
 
     public APIException(String msg) {
-        apiResponse = new APIResponse<Void>(APIResponse.fail, msg, null);
+        apiResponse = new APIResponse<String>(APIResponse.fail, msg, null);
     }
 
-    public APIResponse<Void> getApiResponse() {
+    public APIResponse<String> getApiResponse() {
         return apiResponse;
     }
 }
