@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * Created by niuli on 15-11-1.
  */
-@Data
+//@Data
 public class APIResponse<T> {
     private int code;
     private String msg;
@@ -25,4 +25,28 @@ public class APIResponse<T> {
 
     public static final int suc = 0;
     public static final int fail = -1;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public T getT() {
+        return t;
+    }
+
+    public void setT(T t) {
+        this.t = t;
+    }
 }

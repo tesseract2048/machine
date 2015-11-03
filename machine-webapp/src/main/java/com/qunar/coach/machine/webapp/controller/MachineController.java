@@ -32,7 +32,7 @@ public class MachineController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> registerVideoBeanList(Machine machine) {
-        log.info("Machine device id {} register", machine.getDeviceId());
+        //log.info("Machine device id {} register", machine.getDeviceId());
         Machine added = machineService.addMachine(machine);
         APIResponse<Machine> response = new APIResponse<>();
 

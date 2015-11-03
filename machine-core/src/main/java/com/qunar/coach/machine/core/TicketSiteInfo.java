@@ -9,8 +9,8 @@ import java.util.Date;
 /**
  * Created by niuli on 15-10-21.
  */
-@Data
-@Deprecated
+//@Data
+//@Deprecated
 public class TicketSiteInfo implements Serializable {
     private static final long serialVersionUID = -1244770353544973701L;
 
@@ -102,4 +102,176 @@ public class TicketSiteInfo implements Serializable {
     private Integer minLimit;// 最少距离开车前多少分钟可以购票(+缓冲)
 
     private String md5str;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getDepCity() {
+        return depCity;
+    }
+
+    public void setDepCity(String depCity) {
+        this.depCity = depCity;
+    }
+
+    public String getArrCity() {
+        return arrCity;
+    }
+
+    public void setArrCity(String arrCity) {
+        this.arrCity = arrCity;
+    }
+
+    public String getDepCitySource() {
+        return depCitySource;
+    }
+
+    public void setDepCitySource(String depCitySource) {
+        this.depCitySource = depCitySource;
+    }
+
+    public String getArrCitySource() {
+        return arrCitySource;
+    }
+
+    public void setArrCitySource(String arrCitySource) {
+        this.arrCitySource = arrCitySource;
+    }
+
+    public String getDepStation() {
+        return depStation;
+    }
+
+    public void setDepStation(String depStation) {
+        this.depStation = depStation;
+    }
+
+    public String getDepStationSource() {
+        return depStationSource;
+    }
+
+    public void setDepStationSource(String depStationSource) {
+        this.depStationSource = depStationSource;
+    }
+
+    public String getArrStation() {
+        return arrStation;
+    }
+
+    public void setArrStation(String arrStation) {
+        this.arrStation = arrStation;
+    }
+
+    public String getArrStationSource() {
+        return arrStationSource;
+    }
+
+    public void setArrStationSource(String arrStationSource) {
+        this.arrStationSource = arrStationSource;
+    }
+
+    public String getCheci() {
+        return checi;
+    }
+
+    public void setCheci(String checi) {
+        this.checi = checi;
+    }
+
+    public String getChexing() {
+        return chexing;
+    }
+
+    public void setChexing(String chexing) {
+        this.chexing = chexing;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Date getTicketDate() {
+        return ticketDate;
+    }
+
+    public void setTicketDate(Date ticketDate) {
+        this.ticketDate = ticketDate;
+    }
+
+    public String getDepTime() {
+        return depTime;
+    }
+
+    public void setDepTime(String depTime) {
+        this.depTime = depTime;
+    }
+
+    public String getArrTime() {
+        return arrTime;
+    }
+
+    public void setArrTime(String arrTime) {
+        this.arrTime = arrTime;
+    }
+
+    public Integer getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(Integer mileage) {
+        this.mileage = mileage;
+    }
+
+    public Integer getPeriodTime() {
+        return periodTime;
+    }
+
+    public void setPeriodTime(Integer periodTime) {
+        this.periodTime = periodTime;
+    }
+
+    public Integer getCoachFrom() {
+        return coachFrom;
+    }
+
+    public void setCoachFrom(Integer coachFrom) {
+        this.coachFrom = coachFrom;
+    }
+
+    public String getBookingUrl() {
+        return bookingUrl;
+    }
+
+    public void setBookingUrl(String bookingUrl) {
+        this.bookingUrl = bookingUrl;
+    }
+
+    public String getPreSellTip() {
+        return preSellTip;
+    }
+
+    public void setPreSellTip(String preSellTip) {
+        this.preSellTip = preSellTip;
+    }
+
+    public Integer getMinLimit() {
+        return minLimit;
+    }
+
+    public void setMinLimit(Integer minLimit) {
+        this.minLimit = minLimit;
+    }
+
+    public String getMd5str() {
+        return md5str;
+    }
+
+    public void setMd5str(String md5str) {
+        this.md5str = md5str;
+    }
 }

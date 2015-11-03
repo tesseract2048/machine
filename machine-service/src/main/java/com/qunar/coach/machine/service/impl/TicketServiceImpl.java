@@ -22,7 +22,7 @@ import static com.qunar.coach.machine.dao.model.tables.TicketPrintInfo.TICKET_PR
  * Created by niuli on 15-11-1.
  */
 @Service
-@Slf4j
+//@Slf4j
 public class TicketServiceImpl extends JooqService implements TicketService {
 
     @Override
@@ -98,7 +98,7 @@ public class TicketServiceImpl extends JooqService implements TicketService {
         int ret = getContext().insertInto(TICKET_PRINT_INFO).set(printInfo).
             onDuplicateKeyUpdate().set(TICKET_PRINT_INFO.MODIFY_TIME, now).execute();
         if (ret != 1) {
-            log.warn("Can't add print record, machineId {}, ticketId {}.", machineId, ticketId);
+            //log.warn("Can't add print record, machineId {}, ticketId {}.", machineId, ticketId);
             throw new APIException("Can't add print record.");
         }
     }

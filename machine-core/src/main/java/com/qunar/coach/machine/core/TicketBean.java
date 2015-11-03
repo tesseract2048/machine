@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * Created by niuli on 15-10-20.
  */
 
-@Data
+//@Data
 public class TicketBean {
     // 车票号， 自增
     protected int ticketId;
@@ -86,4 +86,204 @@ public class TicketBean {
 
     // 数据修改时间
     protected Date modifyTime;
+
+    public int getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(int ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    public int getTicketPrintMode() {
+        return ticketPrintMode;
+    }
+
+    public void setTicketPrintMode(int ticketPrintMode) {
+        this.ticketPrintMode = ticketPrintMode;
+    }
+
+    public String getTicketStatus() {
+        return ticketStatus;
+    }
+
+    public void setTicketStatus(String ticketStatus) {
+        this.ticketStatus = ticketStatus;
+    }
+
+    public String getTicketType() {
+        return ticketType;
+    }
+
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
+    }
+
+    public String getIdCardNumber() {
+        return idCardNumber;
+    }
+
+    public void setIdCardNumber(String idCardNumber) {
+        this.idCardNumber = idCardNumber;
+    }
+
+    public String getFetchTicketId() {
+        return fetchTicketId;
+    }
+
+    public void setFetchTicketId(String fetchTicketId) {
+        this.fetchTicketId = fetchTicketId;
+    }
+
+    public String getFetchTicketKey() {
+        return fetchTicketKey;
+    }
+
+    public void setFetchTicketKey(String fetchTicketKey) {
+        this.fetchTicketKey = fetchTicketKey;
+    }
+
+    public String getDepCity() {
+        return depCity;
+    }
+
+    public void setDepCity(String depCity) {
+        this.depCity = depCity;
+    }
+
+    public String getArrCity() {
+        return arrCity;
+    }
+
+    public void setArrCity(String arrCity) {
+        this.arrCity = arrCity;
+    }
+
+    public String getDepStation() {
+        return depStation;
+    }
+
+    public void setDepStation(String depStation) {
+        this.depStation = depStation;
+    }
+
+    public String getArrStation() {
+        return arrStation;
+    }
+
+    public void setArrStation(String arrStation) {
+        this.arrStation = arrStation;
+    }
+
+    public String getRouteNumber() {
+        return routeNumber;
+    }
+
+    public void setRouteNumber(String routeNumber) {
+        this.routeNumber = routeNumber;
+    }
+
+    public Date getDepDate() {
+        return depDate;
+    }
+
+    public void setDepDate(Date depDate) {
+        this.depDate = depDate;
+    }
+
+    public Date getArrDate() {
+        return arrDate;
+    }
+
+    public void setArrDate(Date arrDate) {
+        this.arrDate = arrDate;
+    }
+
+    public String getDepTime() {
+        return depTime;
+    }
+
+    public void setDepTime(String depTime) {
+        this.depTime = depTime;
+    }
+
+    public String getArrTime() {
+        return arrTime;
+    }
+
+    public void setArrTime(String arrTime) {
+        this.arrTime = arrTime;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(String seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    public String getSeatType() {
+        return seatType;
+    }
+
+    public void setSeatType(String seatType) {
+        this.seatType = seatType;
+    }
+
+    public String getCoachType() {
+        return coachType;
+    }
+
+    public void setCoachType(String coachType) {
+        this.coachType = coachType;
+    }
+
+    public double getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(double mileage) {
+        this.mileage = mileage;
+    }
+
+    public String getTicketMachineId() {
+        return ticketMachineId;
+    }
+
+    public void setTicketMachineId(String ticketMachineId) {
+        this.ticketMachineId = ticketMachineId;
+    }
+
+    public Integer getTravleTime() {
+        return travleTime;
+    }
+
+    public void setTravleTime(Integer travleTime) {
+        this.travleTime = travleTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
 }

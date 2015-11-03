@@ -18,7 +18,7 @@ public class ExceptionHandlingControllerAdvice {
     @ExceptionHandler(APIException.class)
     @ResponseBody
     public APIResponse<String> handleException(APIException exception) {
-        log.warn("APIException {}", exception.getApiResponse().getMsg());
+        //log.warn("APIException {}", exception.getApiResponse().getMsg());
         return exception.getApiResponse();
     }
 }
