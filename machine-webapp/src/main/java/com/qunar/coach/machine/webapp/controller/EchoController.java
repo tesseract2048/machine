@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/api")
-public class FirstController {
+public class EchoController {
 
     @Autowired
     private TestService testService;
