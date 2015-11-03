@@ -7,10 +7,12 @@ package com.qunar.coach.machine.webapp.controller;
 import javax.annotation.Resource;
 
 import com.qunar.coach.machine.core.model.APIResponse;
+import com.qunar.coach.machine.core.model.CoachTicket;
 import com.qunar.coach.machine.core.model.PrintInfo;
 import com.qunar.coach.machine.dao.model.tables.pojos.IdentityCard;
 import com.qunar.coach.machine.service.PersonIDService;
 import com.qunar.coach.machine.service.TicketService;
+import com.qunar.coach.machine.webapp.mocker.CoachTicketMocker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,9 @@ import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by niuli on 15-10-21.
@@ -77,7 +81,7 @@ public class TicketController {
 
     @RequestMapping(value = "/query_ticket", method = RequestMethod.GET)
     @ResponseBody
-    public APIResponse<TicketBean> getVideoBeanList(
+    public APIResponse<List<CoachTicket>> getVideoBeanList(
         IdentityCard identityCard,
         @RequestParam(value = MachineRequestParameter.MACHINE_ID, required = true, defaultValue = "") String machineId) {
 
@@ -97,6 +101,9 @@ public class TicketController {
          * */
 
         personIDService.addPerson(identityCard);
+        APIResponse<List<CoachTicket>> api = new APIResponse<>();
+
+        api.setT(CoachTicketMocker.mockList());
         //Todo, mock data
         return new APIResponse<>();
     }
@@ -104,7 +111,7 @@ public class TicketController {
 
     @RequestMapping(value = "/fetch_id", method = RequestMethod.GET)
     @ResponseBody
-    public APIResponse<TicketBean> fetchTicket(
+    public APIResponse<List<CoachTicket>> fetchTicket(
         @RequestParam(value = MachineRequestParameter.MACHINE_ID,
             required = true, defaultValue = "") String machineId,
         @RequestParam(value = MachineRequestParameter.TICKET_ID,
@@ -125,26 +132,9 @@ public class TicketController {
          * 2. ticket status should be right. we plan to use consistent hash table to obtain the data consistent.
          * */
         //Todo: mock data
-        APIResponse<TicketBean> ticketBeanAPIResponse = new APIResponse<>();
-        ticketBeanAPIResponse.setT(mockTicketBean(ticketId));
+        APIResponse<List<CoachTicket>> ticketBeanAPIResponse = new APIResponse<>();
+        ticketBeanAPIResponse.setT(CoachTicketMocker.mockList());
         return ticketBeanAPIResponse;
     }
 
-    private TicketBean mockTicketBean(int ticketId) {
-        TicketBean ticketBean = new TicketBean();
-
-        ticketBean.setTicketId(ticketId);
-        ticketBean.setArrCity("Beijing");
-        ticketBean.setArrDate(new Date(System.currentTimeMillis() + 100000));
-        ticketBean.setArrStation("北京西");
-        ticketBean.setArrTime("10:10");
-        ticketBean.setCoachType("座票");
-        ticketBean.setDepCity("Nanjing");
-        ticketBean.setDepStation("南京南");
-        ticketBean.setDepDate(new Date());
-        ticketBean.setDepTime("20:10");
-        ticketBean.setIdCardNumber("431121199");
-
-        return ticketBean;
-    }
 }

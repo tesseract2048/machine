@@ -9,7 +9,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <import resource="applicationContext-dao.xml"/>
     <context:component-scan base-package="com.qunar.coach.machine.service"/>
 
-    <!--<bean id="idWorker" class="com.qunar.coach.machine.service.utils.IdWorker">-->
-        <!--<constructor-arg index="0" value="${snowflake.worker_ids}"/>-->
-    <!--</bean>-->
+    <bean id="idWorker" class="com.qunar.coach.machine.service.utils.IdWorker">
+        <constructor-arg index="0" value="${snowflake.worker_ids}"/>
+    </bean>
 </beans>
