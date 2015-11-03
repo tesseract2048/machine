@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -26,10 +27,13 @@ public class MachineController {
 
     @RequestMapping(value = "/heartbeat", method = RequestMethod.GET)
     @ResponseBody
-    public APIResponse<Machine> sendHeartBeat(Machine machine) {
+    public APIResponse<Machine> sendHeartBeat(
+        @RequestParam(value = "deviceId") String deviceId) {
+        APIResponse<Machine> response = new APIResponse<>();
 
+        response.setT(machineService.getMachine(deviceId));
         //Todo: mock data
-        return new APIResponse<>();
+        return response;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)

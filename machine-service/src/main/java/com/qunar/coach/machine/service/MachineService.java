@@ -13,6 +13,9 @@ public interface MachineService {
 
     String generateMachineId(Machine machine);
 
+    Machine getMachine(int machineId);
+
+    Machine getMachine(String deviceId);
     /**
      * get machine status
      * @param machineId String

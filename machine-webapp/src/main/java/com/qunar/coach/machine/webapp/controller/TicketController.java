@@ -10,6 +10,7 @@ import com.qunar.coach.machine.core.model.APIResponse;
 import com.qunar.coach.machine.core.model.PrintInfo;
 import com.qunar.coach.machine.dao.model.tables.pojos.IdentityCard;
 import com.qunar.coach.machine.service.PersonIDService;
+import com.qunar.coach.machine.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
+
 /**
  * Created by niuli on 15-10-21.
  */
@@ -30,8 +33,12 @@ public class TicketController {
 
     @Autowired
     private PersonIDService personIDService;
+
     @Resource
     private MachineService machineService;
+
+    @Autowired
+    private TicketService ticketService;
 
     @RequestMapping(value = "/printStart", method = RequestMethod.GET)
     @ResponseBody
@@ -39,9 +46,17 @@ public class TicketController {
         @RequestParam(value = MachineRequestParameter.MACHINE_ID,
             required = true, defaultValue = "") String machineId,
         @RequestParam(value = MachineRequestParameter.TICKET_ID,
-            required = true, defaultValue = "") String ticketId) {
+            required = true, defaultValue = "") int ticketId) {
         //Todo: Mock Data
-        return null;
+        APIResponse<PrintInfo> infoAPIResponse = new APIResponse<>();
+
+        PrintInfo printInfo = new PrintInfo();
+        printInfo.setStartTime(System.currentTimeMillis());
+        printInfo.setTimeOut(300);
+        printInfo.setTicketId(ticketId);
+        infoAPIResponse.setT(printInfo);
+
+        return infoAPIResponse;
     }
 
     @RequestMapping(value = "/printDone", method = RequestMethod.GET)
@@ -57,7 +72,7 @@ public class TicketController {
          * 3. write back status code.
          */
         //Todo: Mock Data
-        return null;
+        return new APIResponse<>();
     }
 
     @RequestMapping(value = "/query_ticket", method = RequestMethod.GET)
@@ -93,7 +108,7 @@ public class TicketController {
         @RequestParam(value = MachineRequestParameter.MACHINE_ID,
             required = true, defaultValue = "") String machineId,
         @RequestParam(value = MachineRequestParameter.TICKET_ID,
-            required = true, defaultValue = "") String fetchTicketId) {
+            required = true, defaultValue = "") int ticketId) {
 
         /**
          * 1. update id card into mysql, that means first check the id card exist, add the card info if not exist.
@@ -110,6 +125,26 @@ public class TicketController {
          * 2. ticket status should be right. we plan to use consistent hash table to obtain the data consistent.
          * */
         //Todo: mock data
-        return new APIResponse<>();
+        APIResponse<TicketBean> ticketBeanAPIResponse = new APIResponse<>();
+        ticketBeanAPIResponse.setT(mockTicketBean(ticketId));
+        return ticketBeanAPIResponse;
+    }
+
+    private TicketBean mockTicketBean(int ticketId) {
+        TicketBean ticketBean = new TicketBean();
+
+        ticketBean.setTicketId(ticketId);
+        ticketBean.setArrCity("Beijing");
+        ticketBean.setArrDate(new Date(System.currentTimeMillis() + 100000));
+        ticketBean.setArrStation("北京西");
+        ticketBean.setArrTime("10:10");
+        ticketBean.setCoachType("座票");
+        ticketBean.setDepCity("Nanjing");
+        ticketBean.setDepStation("南京南");
+        ticketBean.setDepDate(new Date());
+        ticketBean.setDepTime("20:10");
+        ticketBean.setIdCardNumber("431121199");
+
+        return ticketBean;
     }
 }

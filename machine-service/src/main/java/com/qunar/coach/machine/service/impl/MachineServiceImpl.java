@@ -24,9 +24,21 @@ public class MachineServiceImpl extends JooqService implements MachineService {
         Machine existMachine = machineDao.fetchOneByDeviceId(machine.getDeviceId());
         if (existMachine == null) {
             machineDao.insert(machine);
+        } else {
+            return existMachine;
         }
 
         return machineDao.fetchOneByDeviceId(machine.getDeviceId());
+    }
+
+    @Override
+    public Machine getMachine(int machineId) {
+        return machineDao.fetchOneById(machineId);
+    }
+
+    @Override
+    public Machine getMachine(String deviceId) {
+        return machineDao.fetchOneByDeviceId(deviceId);
     }
 
     @Override
