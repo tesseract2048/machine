@@ -4,6 +4,8 @@ import com.qunar.coach.machine.core.model.APIResponse;
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 import com.qunar.coach.machine.service.MachineService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/api/v1/machine")
 @Slf4j
 public class MachineController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MachineController.class);
 
     @Autowired
     private MachineService machineService;
@@ -32,7 +35,9 @@ public class MachineController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> registerVideoBeanList(Machine machine) {
-        //log.info("Machine device id {} register", machine.getDeviceId());
+        //LOGGER.info("Machine device id {} register", machine.getDeviceId());
+        System.out.println("result: " + machine.getDeviceId());
+        //LOGGER.info("Machine info: {}", machine.toString());
         Machine added = machineService.addMachine(machine);
         APIResponse<Machine> response = new APIResponse<>();
 
