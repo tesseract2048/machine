@@ -1,6 +1,6 @@
 package com.qunar.coach.machine.core.mocker;
 
-import com.qunar.coach.machine.core.CoachTicket;
+import com.qunar.coach.machine.core.model.CoachTicket;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.qunar.coach.machine.service.impl;
 
-import com.qunar.coach.machine.core.MachineStatus;
+import com.qunar.coach.machine.core.model.APIException;
 import com.qunar.coach.machine.dao.model.tables.daos.MachineDao;
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 import com.qunar.coach.machine.dao.model.tables.records.MachineRecord;
@@ -9,11 +9,6 @@ import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.service.utils.RecordMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by niuli on 15-10-25.
@@ -40,12 +35,12 @@ public class MachineServiceImpl extends JooqService implements MachineService {
     }
 
     @Override
-    public MachineStatus getMachineStatus(String machineId) {
+    public APIException.MachineStatus getMachineStatus(String machineId) {
         return null;
     }
 
     @Override
-    public boolean setMachineStatus(String machineId, MachineStatus machineStatus) {
+    public boolean setMachineStatus(String machineId, APIException.MachineStatus machineStatus) {
         return false;
     }
 

@@ -1,7 +1,7 @@
 package com.qunar.coach.machine.service;
 
-import com.qunar.coach.machine.core.PrintInfo;
-import com.qunar.coach.machine.core.TicketBean;
+import com.qunar.coach.machine.core.model.PrintInfo;
+import com.qunar.coach.machine.core.model.TicketBean;
 
 import java.util.List;
 

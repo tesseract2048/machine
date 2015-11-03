@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.qunar.coach.machine.core.APIException;
-import com.qunar.coach.machine.core.APIResponse;
+import com.qunar.coach.machine.core.model.APIException;
+import com.qunar.coach.machine.core.model.APIResponse;
 
 /**
  * Created by niuli on 15-10-30.

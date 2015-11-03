@@ -1,8 +1,4 @@
-package com.qunar.coach.machine.core;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package com.qunar.coach.machine.core.model;
 
 /**
  * Created by niuli on 15-11-1.

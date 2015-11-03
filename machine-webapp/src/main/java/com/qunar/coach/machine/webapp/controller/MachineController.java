@@ -1,6 +1,6 @@
 package com.qunar.coach.machine.webapp.controller;
 
-import com.qunar.coach.machine.core.APIResponse;
+import com.qunar.coach.machine.core.model.APIResponse;
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 import com.qunar.coach.machine.service.MachineService;
 import lombok.extern.slf4j.Slf4j;

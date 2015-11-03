@@ -1,9 +1,7 @@
 package com.qunar.coach.machine.service;
 
-import com.qunar.coach.machine.core.MachineStatus;
+import com.qunar.coach.machine.core.model.APIException;
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
-
-import java.util.Date;
 
 
 /**
@@ -20,14 +18,14 @@ public interface MachineService {
      * @param machineId String
      * @return MachineStatus
      */
-    MachineStatus getMachineStatus(String machineId);
+    APIException.MachineStatus getMachineStatus(String machineId);
 
     /**
      * to set machine status
      * @param machineId String
      * @return boolean
      */
-    boolean setMachineStatus(String machineId, MachineStatus machineStatus);
+    boolean setMachineStatus(String machineId, APIException.MachineStatus machineStatus);
 
     /**
      * update machine status

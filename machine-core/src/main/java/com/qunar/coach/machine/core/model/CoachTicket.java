@@ -1,4 +1,4 @@
-package com.qunar.coach.machine.core;
+package com.qunar.coach.machine.core.model;
 
 import lombok.Data;
 

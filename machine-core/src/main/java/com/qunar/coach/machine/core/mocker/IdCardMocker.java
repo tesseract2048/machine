@@ -1,6 +1,6 @@
 package com.qunar.coach.machine.core.mocker;
 
-import com.qunar.coach.machine.core.IdentityCard;
+import com.qunar.coach.machine.core.model.IdentityCard;
 
 import java.util.List;
 

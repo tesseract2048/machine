@@ -1,15 +1,14 @@
 package com.qunar.coach.machine.service.impl;
 
-import com.qunar.coach.machine.core.APIException;
-import com.qunar.coach.machine.core.CoachTicket;
-import com.qunar.coach.machine.core.PrintInfo;
-import com.qunar.coach.machine.core.TicketBean;
-import com.qunar.coach.machine.core.TicketSiteInfo;
+import com.qunar.coach.machine.core.model.APIException;
+import com.qunar.coach.machine.core.model.CoachTicket;
+import com.qunar.coach.machine.core.model.PrintInfo;
+import com.qunar.coach.machine.core.model.TicketBean;
+import com.qunar.coach.machine.core.model.TicketSiteInfo;
 import com.qunar.coach.machine.core.TicketStatus;
 import com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord;
 import com.qunar.coach.machine.service.JooqService;
 import com.qunar.coach.machine.service.TicketService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
