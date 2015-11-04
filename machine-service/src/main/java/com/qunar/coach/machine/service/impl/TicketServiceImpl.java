@@ -1,20 +1,17 @@
 package com.qunar.coach.machine.service.impl;
 
-import com.qunar.coach.machine.core.model.APIException;
-import com.qunar.coach.machine.core.model.CoachTicket;
-import com.qunar.coach.machine.core.model.PrintInfo;
-import com.qunar.coach.machine.core.model.TicketBean;
-import com.qunar.coach.machine.core.model.TicketSiteInfo;
-import com.qunar.coach.machine.core.TicketStatus;
-import com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord;
-import com.qunar.coach.machine.service.JooqService;
-import com.qunar.coach.machine.service.TicketService;
-import org.springframework.stereotype.Service;
+import static com.qunar.coach.machine.dao.model.tables.TicketPrintInfo.TICKET_PRINT_INFO;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-import static com.qunar.coach.machine.dao.model.tables.TicketPrintInfo.TICKET_PRINT_INFO;
+import org.springframework.stereotype.Service;
+
+import com.qunar.coach.machine.core.TicketStatus;
+import com.qunar.coach.machine.core.model.*;
+import com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord;
+import com.qunar.coach.machine.service.JooqService;
+import com.qunar.coach.machine.service.TicketService;
 
 
 /**
@@ -57,7 +54,8 @@ public class TicketServiceImpl extends JooqService implements TicketService {
     }
 
     private void change2PrintDone(String machineId, int ticketId) {
-        int ret = getContext().update(TICKET_PRINT_INFO).set(TICKET_PRINT_INFO.STATUS, TicketStatus.FINISH).execute();
+        int ret = getContext().update(TICKET_PRINT_INFO).set(TICKET_PRINT_INFO.STATUS,
+                TicketStatus.FINISH).execute();
         if (ret != 1) {
             throw new APIException("Can't change to print done status");
         }

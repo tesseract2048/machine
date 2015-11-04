@@ -21,7 +21,7 @@ public class AdminController {
     private MachineService machineService;
 
     @RequestMapping("/api/v1/admin/update")
-    public String getVideoBeanList(
+    public String admin(
             @RequestParam(value = MachineRequestParameter.VERSION,
                     required = false, defaultValue = "") String version,
             @RequestParam(value = MachineRequestParameter.MACHINE_ID,

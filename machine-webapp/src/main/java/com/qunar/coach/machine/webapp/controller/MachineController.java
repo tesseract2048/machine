@@ -1,9 +1,7 @@
 package com.qunar.coach.machine.webapp.controller;
 
-import com.qunar.coach.machine.core.model.APIResponse;
-import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
-import com.qunar.coach.machine.service.MachineService;
 import lombok.extern.slf4j.Slf4j;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.qunar.coach.machine.core.model.APIResponse;
+import com.qunar.coach.machine.core.utils.Md5Util;
+import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
+import com.qunar.coach.machine.service.MachineService;
+
 
 /**
  * Created by niuli on 15-11-1.
@@ -39,9 +43,11 @@ public class MachineController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> registerVideoBeanList(Machine machine) {
-        //LOGGER.info("Machine device id {} register", machine.getDeviceId());
         System.out.println("result: " + machine.getDeviceId());
-        //LOGGER.info("Machine info: {}", machine.toString());
+        String station = machine.getStationInfo();
+        System.out.println(" md5: " + Md5Util.md5(station));
+
+        machine.setDeviceId(Md5Util.md5(station));
         Machine added = machineService.addMachine(machine);
         APIResponse<Machine> response = new APIResponse<>();
 

@@ -21,7 +21,7 @@ public class EchoController {
 
     @RequestMapping(value = "/v1/hello", method = RequestMethod.GET)
     @ResponseBody
-    public String getVideoBeanList(
+    public String getEcho(
             @RequestParam(value = "name", required = false, defaultValue = "") String name) {
         return testService.returnTest() + name;
     }
