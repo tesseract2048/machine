@@ -126,7 +126,7 @@
                             <inputSchema>coach</inputSchema>
                             <customTypes>
                                 <customType>
-                                    <name>com.qunar.coach.machine.core.model.APIException.MachineStatus</name>
+                                    <name>com.qunar.coach.machine.core.model.MachineStatus</name>
                                     <converter>com.qunar.coach.machine.dao.converter.MachineStatusConverter</converter>
                                 </customType>
                                 <customType>
@@ -136,7 +136,7 @@
                             </customTypes>
                             <forcedTypes>
                                 <forcedType>
-                                    <name>com.qunar.coach.machine.core.model.APIException.MachineStatus</name>
+                                    <name>com.qunar.coach.machine.core.model.MachineStatus</name>
                                     <expression>.*\.Machine\.login</expression>
                                 </forcedType>
                                 <forcedType>

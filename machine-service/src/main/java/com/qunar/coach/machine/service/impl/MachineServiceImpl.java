@@ -1,5 +1,6 @@
 package com.qunar.coach.machine.service.impl;
 
+import com.qunar.coach.machine.core.model.MachineStatus;
 import com.qunar.coach.machine.core.utils.DeviceIdProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class MachineServiceImpl extends JooqService implements MachineService {
     public Machine addMachine(Machine machine) {
         Machine existMachine = machineDao.fetchOneByDeviceId(machine.getDeviceId());
         if (existMachine == null) {
-            machine.setLogin(APIException.MachineStatus.ONLINE);
+            machine.setLogin(MachineStatus.ONLINE);
             machineDao.insert(machine);
         } else {
             return existMachine;
@@ -51,7 +52,7 @@ public class MachineServiceImpl extends JooqService implements MachineService {
             long start = System.currentTimeMillis();
             Timestamp ts = new Timestamp(start);
             machine.setSyncTime(ts);
-            existMachine.setLogin(APIException.MachineStatus.ONLINE);
+            existMachine.setLogin(MachineStatus.ONLINE);
             existMachine.setSyncTime(ts);
             existMachine.setPaperNumber(machine.getPaperNumber());
             existMachine.setPaperUsed(machine.getPaperUsed());
