@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <import resource="applicationContext-service.xml"/>
+    <bean id="machineTask" class="com.qunar.coach.machine.timer.MachineStatusMonitor"/>
+
+    <task:scheduled-tasks scheduler="myScheduler">
+        <!-- 每隔1分钟触发一次 -->
+        <task:scheduled ref="machineTask" method="doTask" cron="0 * * * * ?"/>
+    </task:scheduled-tasks>
+
+    <task:scheduler id="myScheduler" pool-size="2"/>
+</beans>

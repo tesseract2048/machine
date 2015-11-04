@@ -13,6 +13,7 @@
         <module>machine-service</module>
         <module>machine-core</module>
         <module>machine-dao</module>
+        <module>machine-timer</module>
     </modules>
 
     <build>
