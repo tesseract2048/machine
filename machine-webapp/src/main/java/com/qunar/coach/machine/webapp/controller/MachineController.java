@@ -1,5 +1,6 @@
 package com.qunar.coach.machine.webapp.controller;
 
+import com.qunar.coach.machine.core.model.APIException;
 import lombok.extern.slf4j.Slf4j;
 
 import org.slf4j.Logger;
@@ -37,15 +38,11 @@ public class MachineController {
     public APIResponse<Machine> sendHeartBeat(Machine machine) {
         APIResponse<Machine> response = new APIResponse<>();
         String deviceId = machine.getDeviceId();
-        System.out.println("deviceId: " + deviceId);
-        long start = System.currentTimeMillis();
-        System.out.println("start: " + start);
-        Timestamp ts = new Timestamp(start);
-        machine.setSyncTime(ts);
-        machineService.updateMachineInfo(machine);
-        response.setT(machine);
+        System.out.println("[heartbeat] deviceId: " + deviceId);
 
-        //Todo: mock data
+        Machine retMachine = machineService.updateMachineInfoByHeartBeat(machine);
+        response.setT(retMachine);
+
         return response;
     }
 
@@ -56,7 +53,7 @@ public class MachineController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> registerVideoBeanList(Machine machine) {
-        System.out.println("deviceId: " + machine.getDeviceId());
+        System.out.println("[register] deviceId: " + machine.getDeviceId());
         String deviceId = machine.getDeviceId();
         if (!isDeviceNotRegistered(deviceId)){
             System.out.println("device has registered. ");
@@ -73,7 +70,7 @@ public class MachineController {
         String md5 = DeviceIdProducer.produceDeviceId(stationInfo, city, province, sequenceNumber);
         System.out.println(" md5: " + md5);
         machine.setDeviceId(Md5Util.md5(md5));
-
+        machine.setLogin(APIException.MachineStatus.ONLINE);
         Machine added = machineService.addMachine(machine);
         APIResponse<Machine> response = new APIResponse<>();
         response.setT(added);
