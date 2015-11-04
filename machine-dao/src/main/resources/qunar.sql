@@ -43,6 +43,7 @@ CREATE TABLE `Machine` (
   `create_time` timestamp NULL DEFAULT NULL,
   `sync_time` datetime DEFAULT NULL,
   `device_id` varchar(128) NOT NULL,
+  `sequence_number` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `device_id` (`device_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

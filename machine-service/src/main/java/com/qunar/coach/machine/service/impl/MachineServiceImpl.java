@@ -32,6 +32,11 @@ public class MachineServiceImpl extends JooqService implements MachineService {
     }
 
     @Override
+    public void updateMachineInfo(Machine machine){
+        machineDao.update(machine);
+    }
+
+    @Override
     public Machine getMachine(int machineId) {
         return machineDao.fetchOneById(machineId);
     }

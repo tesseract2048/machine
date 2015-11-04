@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qunar.coach.machine.core.model.APIResponse;
+import com.qunar.coach.machine.core.utils.DeviceIdProducer;
 import com.qunar.coach.machine.core.utils.Md5Util;
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 import com.qunar.coach.machine.service.MachineService;
+
+import java.sql.Timestamp;
 
 
 /**
@@ -31,26 +34,48 @@ public class MachineController {
 
     @RequestMapping(value = "/heartbeat", method = RequestMethod.GET)
     @ResponseBody
-    public APIResponse<Machine> sendHeartBeat(
-        @RequestParam(value = "deviceId") String deviceId) {
+    public APIResponse<Machine> sendHeartBeat(Machine machine) {
         APIResponse<Machine> response = new APIResponse<>();
+        String deviceId = machine.getDeviceId();
+        System.out.println("deviceId: " + deviceId);
+        long start = System.currentTimeMillis();
+        System.out.println("start: " + start);
+        Timestamp ts = new Timestamp(start);
+        machine.setSyncTime(ts);
+        machineService.updateMachineInfo(machine);
+        response.setT(machine);
 
-        response.setT(machineService.getMachine(deviceId));
         //Todo: mock data
         return response;
+    }
+
+    private boolean isDeviceNotRegistered(String deviceId){
+        return deviceId.equals("NULL");
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> registerVideoBeanList(Machine machine) {
-        System.out.println("result: " + machine.getDeviceId());
-        String station = machine.getStationInfo();
-        System.out.println(" md5: " + Md5Util.md5(station));
+        System.out.println("deviceId: " + machine.getDeviceId());
+        String deviceId = machine.getDeviceId();
+        if (!isDeviceNotRegistered(deviceId)){
+            System.out.println("device has registered. ");
+            APIResponse<Machine> response = new APIResponse<>();
+            response.setCode(APIResponse.fail);
+            response.setMsg("Registered.");
+            return response;
+        }
 
-        machine.setDeviceId(Md5Util.md5(station));
+        String province = machine.getProvince();
+        String city = machine.getCity();
+        int sequenceNumber = machine.getSequenceNumber();
+        String stationInfo = machine.getStationInfo();
+        String md5 = DeviceIdProducer.produceDeviceId(stationInfo, city, province, sequenceNumber);
+        System.out.println(" md5: " + md5);
+        machine.setDeviceId(Md5Util.md5(md5));
+
         Machine added = machineService.addMachine(machine);
         APIResponse<Machine> response = new APIResponse<>();
-
         response.setT(added);
         return response;
     }

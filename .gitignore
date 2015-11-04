@@ -4,3 +4,4 @@ target
 .idea
 *.war
 *.iml
+*.pyc
