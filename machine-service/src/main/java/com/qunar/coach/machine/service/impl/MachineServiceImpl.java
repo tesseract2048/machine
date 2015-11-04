@@ -1,5 +1,6 @@
 package com.qunar.coach.machine.service.impl;
 
+import com.qunar.coach.machine.core.utils.DeviceIdProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -94,5 +95,13 @@ public class MachineServiceImpl extends JooqService implements MachineService {
 
     private MachineRecord toMachineRecord(Machine machine) {
         return RecordMapperUtils.mapObject(machine, MachineRecord.class);
+    }
+
+    public String produceDeviceMd5(Machine machine){
+        String province = machine.getProvince();
+        String city = machine.getCity();
+        int sequenceNumber = machine.getSequenceNumber();
+        String stationInfo = machine.getStationInfo();
+        return DeviceIdProducer.produceDeviceId(stationInfo, city, province, sequenceNumber);
     }
 }

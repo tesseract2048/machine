@@ -57,4 +57,6 @@ public interface MachineService {
      */
     Machine updateMachineInfoByHeartBeat(Machine machine);
 
+    String produceDeviceMd5(Machine machine);
+
 }

@@ -1,6 +1,5 @@
 package com.qunar.coach.machine.webapp.controller;
 
-import com.qunar.coach.machine.core.model.APIException;
 import lombok.extern.slf4j.Slf4j;
 
 import org.slf4j.Logger;
@@ -9,16 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.qunar.coach.machine.core.model.APIException;
 import com.qunar.coach.machine.core.model.APIResponse;
-import com.qunar.coach.machine.core.utils.DeviceIdProducer;
 import com.qunar.coach.machine.core.utils.Md5Util;
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 import com.qunar.coach.machine.service.MachineService;
-
-import java.sql.Timestamp;
 
 
 /**
@@ -29,6 +25,8 @@ import java.sql.Timestamp;
 @Slf4j
 public class MachineController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MachineController.class);
+
+    private static final String NOT_REGISTER = "NULL";
 
     @Autowired
     private MachineService machineService;
@@ -47,7 +45,7 @@ public class MachineController {
     }
 
     private boolean isDeviceNotRegistered(String deviceId){
-        return deviceId.equals("NULL");
+        return deviceId.equals(NOT_REGISTER);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -63,13 +61,7 @@ public class MachineController {
             return response;
         }
 
-        String province = machine.getProvince();
-        String city = machine.getCity();
-        int sequenceNumber = machine.getSequenceNumber();
-        String stationInfo = machine.getStationInfo();
-        String md5 = DeviceIdProducer.produceDeviceId(stationInfo, city, province, sequenceNumber);
-        System.out.println(" md5: " + md5);
-        machine.setDeviceId(Md5Util.md5(md5));
+        machine.setDeviceId(Md5Util.md5(machineService.produceDeviceMd5(machine)));
         machine.setLogin(APIException.MachineStatus.ONLINE);
         Machine added = machineService.addMachine(machine);
         APIResponse<Machine> response = new APIResponse<>();
