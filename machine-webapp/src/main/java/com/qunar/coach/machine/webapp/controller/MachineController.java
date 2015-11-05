@@ -29,6 +29,14 @@ public class MachineController {
     @Autowired
     private MachineService machineService;
 
+    /**
+     * Ticket machine send heart beat message in 2 condition:
+     * 1. when ticket machine start up.
+     * 2. every 5 minute.
+     * This message should contain deviceId, and failed times, print times, suc times,
+     * because the server will judge whether the paper runs off, or the print oid run off.
+     * server use this message response to tell ticket machine whether need to update.
+     */
     @RequestMapping(value = "/heartbeat", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> sendHeartBeat(Machine machine) {
@@ -46,6 +54,11 @@ public class MachineController {
         return deviceId.equals(NOT_REGISTER);
     }
 
+    /**
+     * For machine first init. we produce a deviceId for machine,
+     * using stationName, city, province and machine sequence number md5.
+     * we give the deviceId to machine to save it, for the machine login use.
+     */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> registerVideoBeanList(Machine machine) {
