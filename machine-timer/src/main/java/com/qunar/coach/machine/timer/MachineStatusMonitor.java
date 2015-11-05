@@ -37,7 +37,7 @@ public class MachineStatusMonitor {
 
     private void checkOneMachine(Machine machine){
         if (isMachineDead(machine)) {
-            System.out.print("Machine id" + machine.getId().toString() + " {} is out of date");
+            System.out.print("Machine id " + machine.getId().toString() + " is out of date");
             sentenceToDeath(machine);
         }
     }

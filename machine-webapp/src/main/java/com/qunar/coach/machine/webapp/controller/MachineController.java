@@ -52,7 +52,7 @@ public class MachineController {
         System.out.println("[register] deviceId: " + machine.getDeviceId());
         String deviceId = machine.getDeviceId();
         if (!isDeviceNotRegistered(deviceId)){
-            System.out.println("device has registered. ");
+            System.out.println("device has registered. id: " + deviceId);
             APIResponse<Machine> response = new APIResponse<>();
             response.setCode(APIResponse.fail);
             response.setMsg("Registered.");
