@@ -13,10 +13,4 @@ public class APIException extends RuntimeException {
     public APIResponse<String> getApiResponse() {
         return apiResponse;
     }
-
-    /**
-     * Created by niuli on 15-10-21.
-     */
-    public static enum MachineStatus {
-    }
 }

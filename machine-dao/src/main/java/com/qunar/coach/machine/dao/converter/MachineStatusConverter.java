@@ -11,6 +11,7 @@ public class MachineStatusConverter extends EnumConverter<Byte, MachineStatus> {
 
     @Override
     public Byte to(MachineStatus userObject) {
-        return null;
+
+        return (byte)userObject.getValue();
     }
 }

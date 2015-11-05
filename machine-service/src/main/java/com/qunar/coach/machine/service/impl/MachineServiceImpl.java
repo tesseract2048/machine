@@ -80,12 +80,12 @@ public class MachineServiceImpl extends JooqService implements MachineService {
     }
 
     @Override
-    public APIException.MachineStatus getMachineStatus(String machineId) {
+    public MachineStatus getMachineStatus(String machineId) {
         return null;
     }
 
     @Override
-    public boolean setMachineStatus(String machineId, APIException.MachineStatus machineStatus) {
+    public boolean setMachineStatus(String machineId, MachineStatus machineStatus) {
         return false;
     }
 
