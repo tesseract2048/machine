@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -13,11 +14,20 @@ import java.util.List;
  */
 
 public class MachineStatusMonitor {
+
+    public static final int INTERVAL = 1000 * 60 * 5;
     @Autowired
     private MachineDao machineDao;
     public void doTask() {
         System.out.print("hahah");
         List<Machine> machines = machineDao.findAll();
+        for (Machine machine: machines) {
+            if (machine.getSyncTime().
+                after(new Timestamp(System.currentTimeMillis() - INTERVAL))) {
+                System.out.print("Machine id" + machine.getId().toString() + " {} is out of date");
+            }
+
+        }
         System.out.print(machines);
     }
 
