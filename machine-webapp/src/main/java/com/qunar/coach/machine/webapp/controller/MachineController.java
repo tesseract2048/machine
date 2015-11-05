@@ -31,8 +31,8 @@ public class MachineController {
 
     /**
      * Ticket machine send heart beat message in 2 condition:
-     * 1. when ticket machine start up.
-     * 2. every 5 minute.
+     * 1. When ticket machine start up.
+     * 2. Every 5 minute.
      * This message should contain deviceId, and failed times, print times, suc times,
      * because the server will judge whether the paper runs off, or the print oid run off.
      * server use this message response to tell ticket machine whether need to update.
