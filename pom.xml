@@ -245,6 +245,11 @@
                 <artifactId>lombok</artifactId>
                 <version>1.16.2</version>
             </dependency>
+            <dependency>
+                <groupId>net.kencochrane.raven</groupId>
+                <artifactId>raven-log4j</artifactId>
+                <version>4.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
