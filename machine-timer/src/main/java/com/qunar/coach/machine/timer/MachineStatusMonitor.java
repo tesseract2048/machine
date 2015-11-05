@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.List;
 
 /**
- * Created by zhangyunfan on 15-11-4.
+ * Created by niuli on 15-11-4.
  */
 
 public class MachineStatusMonitor {
