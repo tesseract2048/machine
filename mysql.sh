@@ -92,9 +92,3 @@ CREATE TABLE `identity_card`(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-
-
-
-
-
