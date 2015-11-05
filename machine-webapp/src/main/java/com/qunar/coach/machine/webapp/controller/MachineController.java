@@ -45,8 +45,13 @@ public class MachineController {
         System.out.println("[heartbeat] deviceId: " + deviceId);
 
         Machine retMachine = machineService.updateMachineInfoByHeartBeat(machine);
+        if (null == retMachine){
+            response.setCode(APIResponse.fail);
+        }
+        else{
+            response.setCode(APIResponse.suc);
+        }
         response.setT(retMachine);
-
         return response;
     }
 
