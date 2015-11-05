@@ -1,7 +1,7 @@
 package com.qunar.coach.machine.service.utils;
 
 /**
- * Created by zhangyunfan on 15-3-24.
+ * Created by niuli on 15-10-29.
  */
 
 import org.slf4j.Logger;
