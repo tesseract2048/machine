@@ -79,11 +79,59 @@ public class TicketController {
         return new APIResponse<>();
     }
 
+    @RequestMapping(value = "/test_query_ticket", method = RequestMethod.GET)
+    @ResponseBody
+    public APIResponse<List<CoachTicket>> getTicket(
+        @RequestParam(value = MachineRequestParameter.MACHINE_ID, required = true, defaultValue = "") String machineId,
+        @RequestParam(value = "cardId", required = true) String cardId,
+        @RequestParam(value = "name", required = true) String name,
+        @RequestParam(value = "nation", required = true) String nation,
+        @RequestParam(value = "birthDate", required = true) String birthDate,
+        @RequestParam(value = "address", required = true) String address,
+        @RequestParam(value = "sex", required = true) String sex,
+        @RequestParam(value = "passWord", required = false) String passWord) {
+        System.out.println("[query_ticket] id: " + cardId);
+        System.out.println("[query_ticket] name: " + name);
+        System.out.println("[query_ticket] nation: " + nation);
+        System.out.println("[query_ticket] birthDate: " + birthDate);
+        System.out.println("[query_ticket] address: " + address);
+        System.out.println("[query_ticket] sex: " + sex);
+        System.out.println("[query_ticket] passWord: " + passWord);
+
+        /**
+         * 1. update id card into mysql, that means first check the id card exist, add the card info if not exist.
+         * 2. get ticket info from siteProxy, if no info, write back empty.
+         * 3. generate ticket info list.
+         * 4. rank and filter the info list to adapt every station, find the tickets necessary to feed back.
+         * 5. record the user action into user action table.
+         * 6. record the ticket info into ticket table of mysql.
+         * 7. write back.
+         * cautious:
+         * 1. maybe the request sent to siteProxy is failed due to connection timeout or other error,
+         * we should in charge of the retry way, neither too often nor too few to obtain the response time, use 3 times
+         * to test, then we should optimize the retry times and timeout after experiment.
+         * 2. ticket status should be right. we plan to use consistent hash table to obtain the data consistent.
+         * */
+
+        //personIDService.addPerson(identityCard);
+        APIResponse<List<CoachTicket>> apiResponse = new APIResponse<>();
+
+        apiResponse.setT(CoachTicketMocker.mockList());
+        return apiResponse;
+    }
+
     @RequestMapping(value = "/query_ticket", method = RequestMethod.GET)
     @ResponseBody
-    public APIResponse<List<CoachTicket>> getVideoBeanList(
-        IdentityCard identityCard,
-        @RequestParam(value = MachineRequestParameter.MACHINE_ID, required = true, defaultValue = "") String machineId) {
+    public APIResponse<List<CoachTicket>> getTicketV2(
+            IdentityCard identityCard,
+            @RequestParam(value = MachineRequestParameter.MACHINE_ID, required = true, defaultValue = "") String machineId){
+        System.out.println("[query_ticket] id: " + identityCard.getCardId());
+        System.out.println("[query_ticket] name: " + identityCard.getName());
+        System.out.println("[query_ticket] nation: " + identityCard.getNation());
+        System.out.println("[query_ticket] birthDate: " + identityCard.getBirthDate());
+        System.out.println("[query_ticket] address: " + identityCard.getAddress());
+        System.out.println("[query_ticket] sex: " + identityCard.getSex());
+        //System.out.println("[query_ticket] passWord: " + identit);
 
         /**
          * 1. update id card into mysql, that means first check the id card exist, add the card info if not exist.
