@@ -35,7 +35,7 @@ import java.util.List;
  * Created by niuli on 15-10-21.
  */
 @Controller
-@RequestMapping(value = "/api/ticket")
+@RequestMapping(value = "/api/v1/ticket")
 public class TicketController {
     @Autowired
     private PersonIDService personIDService;
