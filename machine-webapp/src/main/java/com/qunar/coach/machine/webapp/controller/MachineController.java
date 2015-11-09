@@ -66,7 +66,7 @@ public class MachineController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
-    public APIResponse<Machine> registerVideoBeanList(Machine machine) {
+    public APIResponse<Machine> registerMachine(Machine machine) {
         System.out.println("[register] deviceId: " + machine.getDeviceId());
         String deviceId = machine.getDeviceId();
         if (!isDeviceNotRegistered(deviceId)){
