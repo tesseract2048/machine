@@ -19,9 +19,9 @@ and print the ticket in the format of every station ticket mode, which could be 
 6. administer the machine working state.
 
 # graphs:
-1. Lifecyle and data flowing graph:
+1. Lifecycle and data flowing graph:
 http://www.gliffy.com/go/publish/9131607
-2. System consis graph:
+2. System consist graph:
 http://www.gliffy.com/go/publish/9130183
 3. Time sheet for deploying:
 http://www.gliffy.com/go/publish/9151245
