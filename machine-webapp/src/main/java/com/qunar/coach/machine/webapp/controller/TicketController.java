@@ -6,12 +6,15 @@ package com.qunar.coach.machine.webapp.controller;
 
 import javax.annotation.Resource;
 
+import com.qunar.coach.machine.core.mode.ShenZhenTicketPrintBean;
+import com.qunar.coach.machine.core.mode.StationType;
 import com.qunar.coach.machine.core.model.APIResponse;
 import com.qunar.coach.machine.core.model.CoachTicket;
 import com.qunar.coach.machine.core.model.PrintInfo;
 import com.qunar.coach.machine.dao.model.tables.pojos.IdentityCard;
 import com.qunar.coach.machine.service.PersonIDService;
 import com.qunar.coach.machine.service.TicketService;
+import com.qunar.coach.machine.service.facade.TicketBeanFacade;
 import com.qunar.coach.machine.webapp.mocker.CoachTicketMocker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,7 +84,7 @@ public class TicketController {
 
     @RequestMapping(value = "/test_query_ticket", method = RequestMethod.GET)
     @ResponseBody
-    public APIResponse<List<CoachTicket>> getTicket(
+    public APIResponse<List<ShenZhenTicketPrintBean>> getTicket(
         @RequestParam(value = MachineRequestParameter.MACHINE_ID, required = true, defaultValue = "") String machineId,
         @RequestParam(value = "cardId", required = true) String cardId,
         @RequestParam(value = "name", required = true) String name,
@@ -114,13 +117,24 @@ public class TicketController {
          * */
 
         //personIDService.addPerson(identityCard);
-        APIResponse<List<CoachTicket>> apiResponse = new APIResponse<>();
+        APIResponse<List<ShenZhenTicketPrintBean>> apiResponse = new APIResponse<>();
 
-        apiResponse.setT(CoachTicketMocker.mockList());
+        // facade ticket bean.
+        List<CoachTicket> cts = CoachTicketMocker.mockList();
+
+        List<ShenZhenTicketPrintBean> shenZhenTicketPrintBeans = new ArrayList<>();
+        for (CoachTicket ct: cts){
+            TicketBeanFacade tf = new TicketBeanFacade();
+            ShenZhenTicketPrintBean sztpb = (ShenZhenTicketPrintBean)tf.facade(StationType.SHENZHEN, ct);
+            shenZhenTicketPrintBeans.add(sztpb);
+        }
+
+        apiResponse.setT(shenZhenTicketPrintBeans);
+
         return apiResponse;
     }
 
-    @RequestMapping(value = "/query_ticket", method = RequestMethod.GET)
+    @RequestMapping(value = "/query_ticket_by_card", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<List<CoachTicket>> getTicketV2(
             IdentityCard identityCard,
