@@ -19,7 +19,7 @@ public class CoachTicketMocker {
         coachTicket.setCoachToCity("百色");
 
         coachTicket.setCoachFrom("埌东站");
-        coachTicket.setCoachTo("白色站");
+        coachTicket.setCoachTo("百色站");
         coachTicket.setTicketPrice("90.0");
         coachTicket.setCoachStartTime("2015-10-31 12:20");;
 
@@ -37,7 +37,7 @@ public class CoachTicketMocker {
         coachTicket.setCoachToCity("百色");
 
         coachTicket.setCoachFrom("埌东站");
-        coachTicket.setCoachTo("白色站");
+        coachTicket.setCoachTo("百色站");
         coachTicket.setTicketPrice("90.0");
         coachTicket.setCoachStartTime("2015-10-31 12:20");;
 

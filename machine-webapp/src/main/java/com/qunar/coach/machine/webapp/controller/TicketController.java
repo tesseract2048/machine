@@ -37,7 +37,6 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/api/ticket")
 public class TicketController {
-
     @Autowired
     private PersonIDService personIDService;
 
