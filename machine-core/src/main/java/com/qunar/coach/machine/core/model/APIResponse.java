@@ -45,4 +45,13 @@ public class APIResponse<T> {
     public void setT(T t) {
         this.t = t;
     }
+
+    @Override
+    public String toString() {
+        return "APIResponse [" +
+               "code=" + code +
+               ", msg=" + msg +
+               ", t=" + t +
+               ']';
+    }
 }
