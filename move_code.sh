@@ -1,4 +1,5 @@
 cp -r machine-dao /Users/niuli/qunar_project/coach_ticket_machine_server
+cp -r machine-timer /Users/niuli/qunar_project/coach_ticket_machine_server
 cp -r machine-service /Users/niuli/qunar_project/coach_ticket_machine_server
 cp -r machine-webapp /Users/niuli/qunar_project/coach_ticket_machine_server
 cp -r machine-core /Users/niuli/qunar_project/coach_ticket_machine_server
