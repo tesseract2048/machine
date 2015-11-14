@@ -47,6 +47,114 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>gendb</id>
+            <build>
+
+                <!-- jOOQ code generation configuration -->
+                <plugins>
+                    <!-- Read db configuration from file in different profile -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>properties-maven-plugin</artifactId>
+                        <version>1.0-alpha-2</version>
+                        <executions>
+                            <execution>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>read-project-properties</goal>
+                                </goals>
+                                <configuration>
+                                    <files>
+                                        <file>src/main/resources/database.properties.${env}.${db.readwrite}</file>
+                                    </files>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <!-- Specify the maven code generator plugin -->
+                        <groupId>org.jooq</groupId>
+                        <artifactId>jooq-codegen-maven</artifactId>
+                        <version>${org.jooq.version}</version>
+
+                        <!-- The plugin should hook into the generate goal -->
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql.connector.version}</version>
+                            </dependency>
+                        </dependencies>
+
+                        <!-- Specify the plugin configuration.
+                             The configuration format is the same as for the standalone code generator -->
+                        <configuration>
+
+                            <!-- JDBC connection parameters -->
+                            <jdbc>
+                                <driver>${db.driverName}</driver>
+                                <url>${db.url}</url>
+                                <user>${db.username}</user>
+                                <password>${db.password}</password>
+                            </jdbc>
+
+                            <!-- Generator parameters -->
+                            <generator>
+                                <name>org.jooq.util.DefaultGenerator</name>
+                                <database>
+                                    <name>org.jooq.util.mysql.MySQLDatabase</name>
+                                    <includes>.*</includes>
+                                    <excludes>xdual</excludes>
+                                    <!--database name-->
+                                    <inputSchema>coach</inputSchema>
+                                    <customTypes>
+                                        <customType>
+                                            <name>com.qunar.coach.machine.core.model.MachineStatus</name>
+                                            <converter>com.qunar.coach.machine.dao.converter.MachineStatusConverter</converter>
+                                        </customType>
+                                        <customType>
+                                            <name>com.qunar.coach.machine.core.TicketStatus</name>
+                                            <converter>com.qunar.coach.machine.dao.converter.TicketStatusConverter</converter>
+                                        </customType>
+                                    </customTypes>
+                                    <forcedTypes>
+                                        <forcedType>
+                                            <name>com.qunar.coach.machine.core.model.MachineStatus</name>
+                                            <expression>.*\.Machine\.login</expression>
+                                        </forcedType>
+                                        <forcedType>
+                                            <name>com.qunar.coach.machine.core.TicketStatus</name>
+                                            <expression>.*\.ticket_print_info\.status</expression>
+                                        </forcedType>
+                                    </forcedTypes>
+                                </database>
+                                <target>
+                                    <packageName>com.qunar.coach.machine.dao.model</packageName>
+                                    <directory>src/main/java</directory>
+                                </target>
+                                <generate>
+                                    <pojos>true</pojos>
+                                    <daos>true</daos>
+                                    <fluentSetters>true</fluentSetters>
+                                    <globalObjectReferences>true</globalObjectReferences>
+                                </generate>
+                            </generator>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <build>
         <defaultGoal>install</defaultGoal>
         <filters>
@@ -58,107 +166,6 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-
-        <!-- jOOQ code generation configuration -->
-        <plugins>
-            <!-- Read db configuration from file in different profile -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0-alpha-2</version>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>read-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <files>
-                                <file>src/main/resources/database.properties.${env}.${db.readwrite}</file>
-                            </files>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <!-- Specify the maven code generator plugin -->
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-codegen-maven</artifactId>
-                <version>${org.jooq.version}</version>
-
-                <!-- The plugin should hook into the generate goal -->
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.connector.version}</version>
-                    </dependency>
-                </dependencies>
-
-                <!-- Specify the plugin configuration.
-                     The configuration format is the same as for the standalone code generator -->
-                <configuration>
-
-                    <!-- JDBC connection parameters -->
-                    <jdbc>
-                        <driver>${db.driverName}</driver>
-                        <url>${db.url}</url>
-                        <user>${db.username}</user>
-                        <password>${db.password}</password>
-                    </jdbc>
-
-                    <!-- Generator parameters -->
-                    <generator>
-                        <name>org.jooq.util.DefaultGenerator</name>
-                        <database>
-                            <name>org.jooq.util.mysql.MySQLDatabase</name>
-                            <includes>.*</includes>
-                            <excludes>xdual</excludes>
-                            <!--database name-->
-                            <inputSchema>coach</inputSchema>
-                            <customTypes>
-                                <customType>
-                                    <name>com.qunar.coach.machine.core.model.MachineStatus</name>
-                                    <converter>com.qunar.coach.machine.dao.converter.MachineStatusConverter</converter>
-                                </customType>
-                                <customType>
-                                    <name>com.qunar.coach.machine.core.TicketStatus</name>
-                                    <converter>com.qunar.coach.machine.dao.converter.TicketStatusConverter</converter>
-                                </customType>
-                            </customTypes>
-                            <forcedTypes>
-                                <forcedType>
-                                    <name>com.qunar.coach.machine.core.model.MachineStatus</name>
-                                    <expression>.*\.Machine\.login</expression>
-                                </forcedType>
-                                <forcedType>
-                                    <name>com.qunar.coach.machine.core.TicketStatus</name>
-                                    <expression>.*\.ticket_print_info\.status</expression>
-                                </forcedType>
-                            </forcedTypes>
-                        </database>
-                        <target>
-                            <packageName>com.qunar.coach.machine.dao.model</packageName>
-                            <directory>target/generated-sources/java</directory>
-                        </target>
-                        <generate>
-                            <pojos>true</pojos>
-                            <daos>true</daos>
-                            <fluentSetters>true</fluentSetters>
-                            <globalObjectReferences>true</globalObjectReferences>
-                        </generate>
-                    </generator>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
 </project>
