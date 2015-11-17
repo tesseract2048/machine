@@ -22,12 +22,12 @@ import com.qunar.coach.machine.service.TicketService;
 public class TicketServiceImpl extends JooqService implements TicketService {
 
     @Override
-    public TicketBean getUnPrintTicketBeanById(int ticketId) {
+    public TicketBean getUnPrintTicketBeanById(String ticketId) {
         return null;
     }
 
     @Override
-    public PrintInfo startPrint(String machineId, int ticketId) {
+    public PrintInfo startPrint(String machineId, String ticketId) {
         //Todo: 告诉其他服务开始打印，锁定票。不让柜台出票,其他服务返回超时时间.
         // mock数据
         PrintInfo printInfo = new PrintInfo();
@@ -47,13 +47,13 @@ public class TicketServiceImpl extends JooqService implements TicketService {
     }
 
     @Override
-    public PrintInfo notifyPrintDone(String machineId, int ticketId) {
+    public PrintInfo notifyPrintDone(String machineId, String ticketId) {
         //Todo: 告诉其他服务，打印完成。
         change2PrintDone(machineId, ticketId);
         return new PrintInfo();
     }
 
-    private void change2PrintDone(String machineId, int ticketId) {
+    private void change2PrintDone(String machineId, String ticketId) {
         int ret = getContext().update(TICKET_PRINT_INFO).set(TICKET_PRINT_INFO.STATUS,
                 TicketStatus.FINISH).execute();
         if (ret != 1) {
@@ -83,7 +83,7 @@ public class TicketServiceImpl extends JooqService implements TicketService {
         return ticketSiteInfo;
     }
 
-    private void addPrintRecord(String machineId, int ticketId) {
+    private void addPrintRecord(String machineId, String ticketId) {
         Timestamp now = new Timestamp(System.currentTimeMillis());
         TicketPrintInfoRecord printInfo = new TicketPrintInfoRecord();
 

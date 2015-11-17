@@ -35,6 +35,19 @@
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.5</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <useDefaultDelimiters>false</useDefaultDelimiters>
+                        <escapeString>\</escapeString>
+                        <delimiters>
+                            <delimiter>${*}</delimiter>
+                        </delimiters>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -385,5 +398,38 @@
                 <env>online</env>
             </properties>
         </profile>
+
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <deploy.type>local</deploy.type>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>dev1</id>
+            <properties>
+                <deploy.type>dev1</deploy.type>
+                <env>debug</env>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>betaa</id>
+            <properties>
+                <deploy.type>betaa</deploy.type>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>product</id>
+            <properties>
+                <deploy.type>product</deploy.type>
+            </properties>
+        </profile>
+
     </profiles>
 </project>

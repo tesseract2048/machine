@@ -11,7 +11,7 @@ package com.qunar.coach.machine.dao.model.tables.pojos;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Machine implements java.io.Serializable {
 
-	private static final long serialVersionUID = 2050942081;
+	private static final long serialVersionUID = -825358893;
 
 	private java.lang.Integer                                id;
 	private java.lang.String                                 machinePrintMode;
@@ -25,6 +25,8 @@ public class Machine implements java.io.Serializable {
 	private java.lang.Integer                                printTimes;
 	private java.lang.Integer                                sucTimes;
 	private java.lang.Integer                                failedTimes;
+	private java.lang.Integer                                scanSucTimes;
+	private java.lang.Integer                                scanFailedTimes;
 	private java.lang.Integer                                paperNumber;
 	private java.lang.Integer                                paperUsed;
 	private java.lang.String                                 userId;
@@ -35,6 +37,7 @@ public class Machine implements java.io.Serializable {
 	private java.sql.Timestamp                               syncTime;
 	private java.lang.String                                 deviceId;
 	private java.lang.Integer                                sequenceNumber;
+	private java.lang.Integer                                maintenance;
 
 	public Machine() {}
 
@@ -51,6 +54,8 @@ public class Machine implements java.io.Serializable {
 		java.lang.Integer                                printTimes,
 		java.lang.Integer                                sucTimes,
 		java.lang.Integer                                failedTimes,
+		java.lang.Integer                                scanSucTimes,
+		java.lang.Integer                                scanFailedTimes,
 		java.lang.Integer                                paperNumber,
 		java.lang.Integer                                paperUsed,
 		java.lang.String                                 userId,
@@ -60,7 +65,8 @@ public class Machine implements java.io.Serializable {
 		java.sql.Timestamp                               createTime,
 		java.sql.Timestamp                               syncTime,
 		java.lang.String                                 deviceId,
-		java.lang.Integer                                sequenceNumber
+		java.lang.Integer                                sequenceNumber,
+		java.lang.Integer                                maintenance
 	) {
 		this.id = id;
 		this.machinePrintMode = machinePrintMode;
@@ -74,6 +80,8 @@ public class Machine implements java.io.Serializable {
 		this.printTimes = printTimes;
 		this.sucTimes = sucTimes;
 		this.failedTimes = failedTimes;
+		this.scanSucTimes = scanSucTimes;
+		this.scanFailedTimes = scanFailedTimes;
 		this.paperNumber = paperNumber;
 		this.paperUsed = paperUsed;
 		this.userId = userId;
@@ -84,6 +92,7 @@ public class Machine implements java.io.Serializable {
 		this.syncTime = syncTime;
 		this.deviceId = deviceId;
 		this.sequenceNumber = sequenceNumber;
+		this.maintenance = maintenance;
 	}
 
 	public java.lang.Integer getId() {
@@ -194,6 +203,24 @@ public class Machine implements java.io.Serializable {
 		return this;
 	}
 
+	public java.lang.Integer getScanSucTimes() {
+		return this.scanSucTimes;
+	}
+
+	public Machine setScanSucTimes(java.lang.Integer scanSucTimes) {
+		this.scanSucTimes = scanSucTimes;
+		return this;
+	}
+
+	public java.lang.Integer getScanFailedTimes() {
+		return this.scanFailedTimes;
+	}
+
+	public Machine setScanFailedTimes(java.lang.Integer scanFailedTimes) {
+		this.scanFailedTimes = scanFailedTimes;
+		return this;
+	}
+
 	public java.lang.Integer getPaperNumber() {
 		return this.paperNumber;
 	}
@@ -281,6 +308,15 @@ public class Machine implements java.io.Serializable {
 
 	public Machine setSequenceNumber(java.lang.Integer sequenceNumber) {
 		this.sequenceNumber = sequenceNumber;
+		return this;
+	}
+
+	public java.lang.Integer getMaintenance() {
+		return this.maintenance;
+	}
+
+	public Machine setMaintenance(java.lang.Integer maintenance) {
+		this.maintenance = maintenance;
 		return this;
 	}
 }

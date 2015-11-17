@@ -1,11 +1,7 @@
 package com.qunar.coach.machine.webapp.controller;
 
-import com.qunar.coach.machine.core.model.APIResponse;
-import com.qunar.coach.machine.core.model.MachineStatus;
-import com.qunar.coach.machine.core.utils.Md5Util;
-import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
-import com.qunar.coach.machine.service.MachineService;
 import lombok.extern.slf4j.Slf4j;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.qunar.coach.machine.core.model.APIResponse;
+import com.qunar.coach.machine.core.model.MachineStatus;
+import com.qunar.coach.machine.core.model.UpdateData;
+import com.qunar.coach.machine.core.utils.Md5Util;
+import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
+import com.qunar.coach.machine.service.MachineService;
 
 
 /**
@@ -26,6 +29,12 @@ public class MachineController {
 
     private static final String NOT_REGISTER = "NULL";
 
+    private static final String UPDATE_URL = "http://localhost:10086/nw.zip";
+
+    private static final String VERSION = "v1.0.1";
+
+    private static final String IS_NW_INCLUDE = "true";
+
     @Autowired
     private MachineService machineService;
 
@@ -34,29 +43,35 @@ public class MachineController {
      * 1. When ticket machine start up.
      * 2. Every 5 minute.
      * This message should contain deviceId, and failed times, print times, suc times,
-     * because the server will judge whether the paper runs off, or the print oid run off.
-     * server use this message response to tell ticket machine whether need to update.
+     * because the server will judge whether the paper runs off, or the print oid runs off.
+     * server uses this message response to tell ticket machine whether need to update.
      */
     @RequestMapping(value = "/heartbeat", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> sendHeartBeat(Machine machine) {
-        APIResponse<Machine> response = new APIResponse<>();
-        String deviceId = machine.getDeviceId();
-        System.out.println("[heartbeat] deviceId: " + deviceId);
+        try {
+            APIResponse<Machine> response = new APIResponse<>();
+            String deviceId = machine.getDeviceId();
+            System.out.println("[heartbeat] deviceId: " + deviceId);
 
-        Machine retMachine = machineService.updateMachineInfoByHeartBeat(machine);
-        if (null == retMachine){
-            response.setCode(APIResponse.fail);
+            Machine retMachine = machineService.updateMachineInfoByHeartBeat(machine);
+            if (null == retMachine) {
+                response.setCode(APIResponse.fail);
+            } else {
+                response.setCode(APIResponse.suc);
+            }
+            response.setT(retMachine);
+            UpdateData updateData = new UpdateData();
+            updateData.setIsNwIncluded(IS_NW_INCLUDE);
+            updateData.setUpdateUrl(UPDATE_URL);
+            updateData.setVersion(VERSION);
+            response.setU(updateData);
+            return response;
         }
-        else{
-            response.setCode(APIResponse.suc);
+        catch (Exception e) {
+            System.out.println("[heartbeat] err " + e);
+            return new APIResponse<>();
         }
-        response.setT(retMachine);
-        return response;
-    }
-
-    private boolean isDeviceNotRegistered(String deviceId){
-        return deviceId.equals(NOT_REGISTER);
     }
 
     /**
@@ -84,4 +99,9 @@ public class MachineController {
         response.setT(added);
         return response;
     }
+
+    private boolean isDeviceNotRegistered(String deviceId){
+        return deviceId.equals(NOT_REGISTER);
+    }
+
 }

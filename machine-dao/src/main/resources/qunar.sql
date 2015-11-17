@@ -34,6 +34,8 @@ CREATE TABLE `Machine` (
   `print_times` int(11) DEFAULT '0',
   `suc_times` int(11) DEFAULT '0',
   `failed_times` int(11) DEFAULT '0',
+  `scan_suc_times` int(11) DEFAULT '0',
+  `scan_failed_times` int(11) DEFAULT '0',
   `paper_number` int(11) DEFAULT '0',
   `paper_used` int(11) DEFAULT '0',
   `user_id` varchar(64) DEFAULT NULL,
@@ -44,6 +46,7 @@ CREATE TABLE `Machine` (
   `sync_time` datetime DEFAULT NULL,
   `device_id` varchar(128) NOT NULL,
   `sequence_number` int(11) NOT NULL,
+  `maintenance` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `device_id` (`device_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -114,7 +117,7 @@ CREATE TABLE `station` (
 DROP TABLE IF EXISTS `ticket_print_info`;
 CREATE TABLE `ticket_print_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ticket_id` int(11) NOT NULL,
+  `ticket_id` varchar(128) NOT NULL,
   `status` varchar(16) DEFAULT NULL,
   `print_machine_id` varchar(32) DEFAULT NULL,
   `modify_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,

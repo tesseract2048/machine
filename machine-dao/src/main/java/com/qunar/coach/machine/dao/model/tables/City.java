@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class City extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao.model.tables.records.CityRecord> {
 
-	private static final long serialVersionUID = -299581526;
+	private static final long serialVersionUID = 1678335012;
 
 	/**
-	 * The singleton instance of <code>coach.city</code>
+	 * The singleton instance of <code>machine.city</code>
 	 */
 	public static final com.qunar.coach.machine.dao.model.tables.City CITY = new com.qunar.coach.machine.dao.model.tables.City();
 
@@ -27,29 +27,29 @@ public class City extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao.mo
 	}
 
 	/**
-	 * The column <code>coach.city.id</code>.
+	 * The column <code>machine.city.id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.CityRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>coach.city.province</code>.
+	 * The column <code>machine.city.province</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.CityRecord, java.lang.Integer> PROVINCE = createField("province", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
-	 * The column <code>coach.city.city_name</code>.
+	 * The column <code>machine.city.city_name</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.CityRecord, java.lang.String> CITY_NAME = createField("city_name", org.jooq.impl.SQLDataType.VARCHAR.length(20), this, "");
 
 	/**
-	 * Create a <code>coach.city</code> table reference
+	 * Create a <code>machine.city</code> table reference
 	 */
 	public City() {
 		this("city", null);
 	}
 
 	/**
-	 * Create an aliased <code>coach.city</code> table reference
+	 * Create an aliased <code>machine.city</code> table reference
 	 */
 	public City(java.lang.String alias) {
 		this(alias, com.qunar.coach.machine.dao.model.tables.City.CITY);
@@ -60,7 +60,7 @@ public class City extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao.mo
 	}
 
 	private City(java.lang.String alias, org.jooq.Table<com.qunar.coach.machine.dao.model.tables.records.CityRecord> aliased, org.jooq.Field<?>[] parameters) {
-		super(alias, com.qunar.coach.machine.dao.model.Coach.COACH, aliased, parameters, "");
+		super(alias, com.qunar.coach.machine.dao.model.Machine.MACHINE, aliased, parameters, "");
 	}
 
 	/**

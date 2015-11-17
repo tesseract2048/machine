@@ -15,12 +15,12 @@ public class CoachTicketMocker {
 
         coachTicket.setPassengerName("牛立");
         coachTicket.setPassengerNo("610103198809012816");
-        coachTicket.setCoachFromCity("南宁");
+        coachTicket.setCoachFromCity("深圳");
         coachTicket.setCoachToCity("百色");
 
-        coachTicket.setCoachFrom("埌东站");
+        coachTicket.setCoachFrom("龙岗站");
         coachTicket.setCoachTo("百色站");
-        coachTicket.setTicketPrice("90.0");
+        coachTicket.setTicketPrice("220.0");
         coachTicket.setCoachStartTime("2015-10-31 12:20");;
 
         //coachTicket.setId("1");
@@ -33,13 +33,13 @@ public class CoachTicketMocker {
 
         coachTicket.setPassengerName("甘飞");
         coachTicket.setPassengerNo("101103199012212262");
-        coachTicket.setCoachFromCity("南宁");
-        coachTicket.setCoachToCity("百色");
+        coachTicket.setCoachFromCity("深圳");
+        coachTicket.setCoachToCity("南宁");
 
-        coachTicket.setCoachFrom("埌东站");
+        coachTicket.setCoachFrom("宝安站");
         coachTicket.setCoachTo("百色站");
-        coachTicket.setTicketPrice("90.0");
-        coachTicket.setCoachStartTime("2015-10-31 12:20");;
+        coachTicket.setTicketPrice("390.0");
+        coachTicket.setCoachStartTime("2015-12-01 12:20");;
 
         return coachTicket;
     }

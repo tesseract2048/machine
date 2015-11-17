@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TicketPrintInfo extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord> {
 
-	private static final long serialVersionUID = -1862791102;
+	private static final long serialVersionUID = -371105512;
 
 	/**
-	 * The singleton instance of <code>coach.ticket_print_info</code>
+	 * The singleton instance of <code>machine.ticket_print_info</code>
 	 */
 	public static final com.qunar.coach.machine.dao.model.tables.TicketPrintInfo TICKET_PRINT_INFO = new com.qunar.coach.machine.dao.model.tables.TicketPrintInfo();
 
@@ -27,49 +27,49 @@ public class TicketPrintInfo extends org.jooq.impl.TableImpl<com.qunar.coach.mac
 	}
 
 	/**
-	 * The column <code>coach.ticket_print_info.id</code>.
+	 * The column <code>machine.ticket_print_info.id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>coach.ticket_print_info.ticket_id</code>.
+	 * The column <code>machine.ticket_print_info.ticket_id</code>.
 	 */
-	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord, java.lang.Integer> TICKET_ID = createField("ticket_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord, java.lang.String> TICKET_ID = createField("ticket_id", org.jooq.impl.SQLDataType.VARCHAR.length(128).nullable(false), this, "");
 
 	/**
-	 * The column <code>coach.ticket_print_info.status</code>.
+	 * The column <code>machine.ticket_print_info.status</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord, com.qunar.coach.machine.core.TicketStatus> STATUS = createField("status", org.jooq.impl.SQLDataType.VARCHAR.length(16), this, "", new com.qunar.coach.machine.dao.converter.TicketStatusConverter());
 
 	/**
-	 * The column <code>coach.ticket_print_info.print_machine_id</code>.
+	 * The column <code>machine.ticket_print_info.print_machine_id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord, java.lang.String> PRINT_MACHINE_ID = createField("print_machine_id", org.jooq.impl.SQLDataType.VARCHAR.length(32), this, "");
 
 	/**
-	 * The column <code>coach.ticket_print_info.modify_time</code>.
+	 * The column <code>machine.ticket_print_info.modify_time</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord, java.sql.Timestamp> MODIFY_TIME = createField("modify_time", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
 	/**
-	 * The column <code>coach.ticket_print_info.create_time</code>.
+	 * The column <code>machine.ticket_print_info.create_time</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord, java.sql.Timestamp> CREATE_TIME = createField("create_time", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
 	/**
-	 * The column <code>coach.ticket_print_info.print_id</code>.
+	 * The column <code>machine.ticket_print_info.print_id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord, java.lang.String> PRINT_ID = createField("print_id", org.jooq.impl.SQLDataType.VARCHAR.length(128), this, "");
 
 	/**
-	 * Create a <code>coach.ticket_print_info</code> table reference
+	 * Create a <code>machine.ticket_print_info</code> table reference
 	 */
 	public TicketPrintInfo() {
 		this("ticket_print_info", null);
 	}
 
 	/**
-	 * Create an aliased <code>coach.ticket_print_info</code> table reference
+	 * Create an aliased <code>machine.ticket_print_info</code> table reference
 	 */
 	public TicketPrintInfo(java.lang.String alias) {
 		this(alias, com.qunar.coach.machine.dao.model.tables.TicketPrintInfo.TICKET_PRINT_INFO);
@@ -80,7 +80,7 @@ public class TicketPrintInfo extends org.jooq.impl.TableImpl<com.qunar.coach.mac
 	}
 
 	private TicketPrintInfo(java.lang.String alias, org.jooq.Table<com.qunar.coach.machine.dao.model.tables.records.TicketPrintInfoRecord> aliased, org.jooq.Field<?>[] parameters) {
-		super(alias, com.qunar.coach.machine.dao.model.Coach.COACH, aliased, parameters, "");
+		super(alias, com.qunar.coach.machine.dao.model.Machine.MACHINE, aliased, parameters, "");
 	}
 
 	/**

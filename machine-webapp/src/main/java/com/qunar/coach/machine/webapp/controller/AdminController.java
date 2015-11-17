@@ -1,7 +1,7 @@
 package com.qunar.coach.machine.webapp.controller;
 
 import com.qunar.coach.machine.core.model.APIResponse;
-import com.qunar.coach.machine.dao.model.Coach;
+import com.qunar.coach.machine.dao.model.Machine;
 
 import org.jooq.DSLContext;
 import org.jooq.Field;
@@ -41,7 +41,7 @@ public class AdminController {
   @PostConstruct
   public void init() {
     tables = new HashMap<>();
-    for (Table<?> table : Coach.COACH.getTables()) {
+    for (Table<?> table : Machine.MACHINE.getTables()) {
       tables.put(table.getName().toLowerCase(), table);
     }
   }

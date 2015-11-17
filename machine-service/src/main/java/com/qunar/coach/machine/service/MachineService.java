@@ -60,4 +60,11 @@ public interface MachineService {
 
     String produceDeviceMd5(Machine machine);
 
+    /**
+     * check if the device exist.
+     *
+     * @return boolean
+     */
+    boolean isDeviceExist(String deviceId);
+
 }

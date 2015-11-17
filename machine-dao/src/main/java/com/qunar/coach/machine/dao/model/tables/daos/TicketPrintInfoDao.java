@@ -50,14 +50,14 @@ public class TicketPrintInfoDao extends org.jooq.impl.DAOImpl<com.qunar.coach.ma
 	/**
 	 * Fetch records that have <code>ticket_id IN (values)</code>
 	 */
-	public java.util.List<com.qunar.coach.machine.dao.model.tables.pojos.TicketPrintInfo> fetchByTicketId(java.lang.Integer... values) {
+	public java.util.List<com.qunar.coach.machine.dao.model.tables.pojos.TicketPrintInfo> fetchByTicketId(java.lang.String... values) {
 		return fetch(com.qunar.coach.machine.dao.model.tables.TicketPrintInfo.TICKET_PRINT_INFO.TICKET_ID, values);
 	}
 
 	/**
 	 * Fetch a unique record that has <code>ticket_id = value</code>
 	 */
-	public com.qunar.coach.machine.dao.model.tables.pojos.TicketPrintInfo fetchOneByTicketId(java.lang.Integer value) {
+	public com.qunar.coach.machine.dao.model.tables.pojos.TicketPrintInfo fetchOneByTicketId(java.lang.String value) {
 		return fetchOne(com.qunar.coach.machine.dao.model.tables.TicketPrintInfo.TICKET_PRINT_INFO.TICKET_ID, value);
 	}
 

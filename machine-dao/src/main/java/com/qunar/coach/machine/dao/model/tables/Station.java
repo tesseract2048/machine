@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Station extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao.model.tables.records.StationRecord> {
 
-	private static final long serialVersionUID = 1761446555;
+	private static final long serialVersionUID = 1408811559;
 
 	/**
-	 * The singleton instance of <code>coach.station</code>
+	 * The singleton instance of <code>machine.station</code>
 	 */
 	public static final com.qunar.coach.machine.dao.model.tables.Station STATION = new com.qunar.coach.machine.dao.model.tables.Station();
 
@@ -27,29 +27,29 @@ public class Station extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao
 	}
 
 	/**
-	 * The column <code>coach.station.id</code>.
+	 * The column <code>machine.station.id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.StationRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>coach.station.station_name</code>.
+	 * The column <code>machine.station.station_name</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.StationRecord, java.lang.String> STATION_NAME = createField("station_name", org.jooq.impl.SQLDataType.VARCHAR.length(30), this, "");
 
 	/**
-	 * The column <code>coach.station.city_id</code>.
+	 * The column <code>machine.station.city_id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.StationRecord, java.lang.Integer> CITY_ID = createField("city_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
-	 * Create a <code>coach.station</code> table reference
+	 * Create a <code>machine.station</code> table reference
 	 */
 	public Station() {
 		this("station", null);
 	}
 
 	/**
-	 * Create an aliased <code>coach.station</code> table reference
+	 * Create an aliased <code>machine.station</code> table reference
 	 */
 	public Station(java.lang.String alias) {
 		this(alias, com.qunar.coach.machine.dao.model.tables.Station.STATION);
@@ -60,7 +60,7 @@ public class Station extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao
 	}
 
 	private Station(java.lang.String alias, org.jooq.Table<com.qunar.coach.machine.dao.model.tables.records.StationRecord> aliased, org.jooq.Field<?>[] parameters) {
-		super(alias, com.qunar.coach.machine.dao.model.Coach.COACH, aliased, parameters, "");
+		super(alias, com.qunar.coach.machine.dao.model.Machine.MACHINE, aliased, parameters, "");
 	}
 
 	/**

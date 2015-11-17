@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ProvinceRecord extends org.jooq.impl.TableRecordImpl<com.qunar.coach.machine.dao.model.tables.records.ProvinceRecord> implements org.jooq.Record2<java.lang.Integer, java.lang.String> {
 
-	private static final long serialVersionUID = 1812447716;
+	private static final long serialVersionUID = 1598619166;
 
 	/**
-	 * Setter for <code>coach.province.id</code>.
+	 * Setter for <code>machine.province.id</code>.
 	 */
 	public ProvinceRecord setId(java.lang.Integer value) {
 		setValue(0, value);
@@ -22,14 +22,14 @@ public class ProvinceRecord extends org.jooq.impl.TableRecordImpl<com.qunar.coac
 	}
 
 	/**
-	 * Getter for <code>coach.province.id</code>.
+	 * Getter for <code>machine.province.id</code>.
 	 */
 	public java.lang.Integer getId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>coach.province.province</code>.
+	 * Setter for <code>machine.province.province</code>.
 	 */
 	public ProvinceRecord setProvince(java.lang.String value) {
 		setValue(1, value);
@@ -37,7 +37,7 @@ public class ProvinceRecord extends org.jooq.impl.TableRecordImpl<com.qunar.coac
 	}
 
 	/**
-	 * Getter for <code>coach.province.province</code>.
+	 * Getter for <code>machine.province.province</code>.
 	 */
 	public java.lang.String getProvince() {
 		return (java.lang.String) getValue(1);

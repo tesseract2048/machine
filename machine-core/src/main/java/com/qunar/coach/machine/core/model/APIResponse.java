@@ -1,5 +1,7 @@
 package com.qunar.coach.machine.core.model;
 
+import java.util.Map;
+
 /**
  * Created by niuli on 15-11-1.
  */
@@ -8,6 +10,7 @@ public class APIResponse<T> {
     private int code;
     private String msg;
     private T t;
+    private Object u;
 
     public APIResponse() {
         this.code = APIResponse.suc;
@@ -42,16 +45,25 @@ public class APIResponse<T> {
         return t;
     }
 
+    public Object getU() {
+        return u;
+    }
+
     public void setT(T t) {
         this.t = t;
     }
 
+    public void setU(Object u) {
+        this.u = u;
+    }
+
     @Override
     public String toString() {
-        return "APIResponse [" +
-               "code=" + code +
-               ", msg=" + msg +
-               ", t=" + t +
-               ']';
+        return "APIResponse{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", t=" + t +
+                ", u=" + u +
+                '}';
     }
 }

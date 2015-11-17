@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Province extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao.model.tables.records.ProvinceRecord> {
 
-	private static final long serialVersionUID = -2081502936;
+	private static final long serialVersionUID = 1478858159;
 
 	/**
-	 * The singleton instance of <code>coach.province</code>
+	 * The singleton instance of <code>machine.province</code>
 	 */
 	public static final com.qunar.coach.machine.dao.model.tables.Province PROVINCE = new com.qunar.coach.machine.dao.model.tables.Province();
 
@@ -27,24 +27,24 @@ public class Province extends org.jooq.impl.TableImpl<com.qunar.coach.machine.da
 	}
 
 	/**
-	 * The column <code>coach.province.id</code>.
+	 * The column <code>machine.province.id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.ProvinceRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
-	 * The column <code>coach.province.province</code>.
+	 * The column <code>machine.province.province</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.ProvinceRecord, java.lang.String> PROVINCE_ = createField("province", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
 
 	/**
-	 * Create a <code>coach.province</code> table reference
+	 * Create a <code>machine.province</code> table reference
 	 */
 	public Province() {
 		this("province", null);
 	}
 
 	/**
-	 * Create an aliased <code>coach.province</code> table reference
+	 * Create an aliased <code>machine.province</code> table reference
 	 */
 	public Province(java.lang.String alias) {
 		this(alias, com.qunar.coach.machine.dao.model.tables.Province.PROVINCE);
@@ -55,7 +55,7 @@ public class Province extends org.jooq.impl.TableImpl<com.qunar.coach.machine.da
 	}
 
 	private Province(java.lang.String alias, org.jooq.Table<com.qunar.coach.machine.dao.model.tables.records.ProvinceRecord> aliased, org.jooq.Field<?>[] parameters) {
-		super(alias, com.qunar.coach.machine.dao.model.Coach.COACH, aliased, parameters, "");
+		super(alias, com.qunar.coach.machine.dao.model.Machine.MACHINE, aliased, parameters, "");
 	}
 
 	/**

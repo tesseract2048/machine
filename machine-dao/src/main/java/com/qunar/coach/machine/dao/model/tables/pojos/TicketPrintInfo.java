@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables.pojos;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TicketPrintInfo implements java.io.Serializable {
 
-	private static final long serialVersionUID = 958752255;
+	private static final long serialVersionUID = -1091900225;
 
 	private java.lang.Integer                         id;
-	private java.lang.Integer                         ticketId;
+	private java.lang.String                          ticketId;
 	private com.qunar.coach.machine.core.TicketStatus status;
 	private java.lang.String                          printMachineId;
 	private java.sql.Timestamp                        modifyTime;
@@ -25,7 +25,7 @@ public class TicketPrintInfo implements java.io.Serializable {
 
 	public TicketPrintInfo(
 		java.lang.Integer                         id,
-		java.lang.Integer                         ticketId,
+		java.lang.String                          ticketId,
 		com.qunar.coach.machine.core.TicketStatus status,
 		java.lang.String                          printMachineId,
 		java.sql.Timestamp                        modifyTime,
@@ -50,11 +50,11 @@ public class TicketPrintInfo implements java.io.Serializable {
 		return this;
 	}
 
-	public java.lang.Integer getTicketId() {
+	public java.lang.String getTicketId() {
 		return this.ticketId;
 	}
 
-	public TicketPrintInfo setTicketId(java.lang.Integer ticketId) {
+	public TicketPrintInfo setTicketId(java.lang.String ticketId) {
 		this.ticketId = ticketId;
 		return this;
 	}

@@ -125,6 +125,20 @@ public class MachineDao extends org.jooq.impl.DAOImpl<com.qunar.coach.machine.da
 	}
 
 	/**
+	 * Fetch records that have <code>scan_suc_times IN (values)</code>
+	 */
+	public java.util.List<com.qunar.coach.machine.dao.model.tables.pojos.Machine> fetchByScanSucTimes(java.lang.Integer... values) {
+		return fetch(com.qunar.coach.machine.dao.model.tables.Machine.MACHINE.SCAN_SUC_TIMES, values);
+	}
+
+	/**
+	 * Fetch records that have <code>scan_failed_times IN (values)</code>
+	 */
+	public java.util.List<com.qunar.coach.machine.dao.model.tables.pojos.Machine> fetchByScanFailedTimes(java.lang.Integer... values) {
+		return fetch(com.qunar.coach.machine.dao.model.tables.Machine.MACHINE.SCAN_FAILED_TIMES, values);
+	}
+
+	/**
 	 * Fetch records that have <code>paper_number IN (values)</code>
 	 */
 	public java.util.List<com.qunar.coach.machine.dao.model.tables.pojos.Machine> fetchByPaperNumber(java.lang.Integer... values) {
@@ -199,5 +213,12 @@ public class MachineDao extends org.jooq.impl.DAOImpl<com.qunar.coach.machine.da
 	 */
 	public java.util.List<com.qunar.coach.machine.dao.model.tables.pojos.Machine> fetchBySequenceNumber(java.lang.Integer... values) {
 		return fetch(com.qunar.coach.machine.dao.model.tables.Machine.MACHINE.SEQUENCE_NUMBER, values);
+	}
+
+	/**
+	 * Fetch records that have <code>maintenance IN (values)</code>
+	 */
+	public java.util.List<com.qunar.coach.machine.dao.model.tables.pojos.Machine> fetchByMaintenance(java.lang.Integer... values) {
+		return fetch(com.qunar.coach.machine.dao.model.tables.Machine.MACHINE.MAINTENANCE, values);
 	}
 }

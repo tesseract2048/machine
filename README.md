@@ -39,4 +39,7 @@ We use lombok to save code scale.
 intellij plugin:
 https://github.com/mplushnikov/lombok-intellij-plugin#IntelliJ_Idea_plugin_project_for_project
 
-
+# TODO:
+1. Use AOP for cache.
+2. Adapter for print models.
+3. Optimize ...

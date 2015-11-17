@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord> implements org.jooq.Record9<java.lang.Integer, java.lang.String, java.lang.String, java.lang.String, java.sql.Timestamp, java.lang.String, java.lang.Byte, java.sql.Timestamp, java.sql.Timestamp> {
 
-	private static final long serialVersionUID = -117956144;
+	private static final long serialVersionUID = 731247204;
 
 	/**
-	 * Setter for <code>coach.identity_card.id</code>.
+	 * Setter for <code>machine.identity_card.id</code>.
 	 */
 	public IdentityCardRecord setId(java.lang.Integer value) {
 		setValue(0, value);
@@ -22,14 +22,14 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.id</code>.
+	 * Getter for <code>machine.identity_card.id</code>.
 	 */
 	public java.lang.Integer getId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>coach.identity_card.card_id</code>. 身份证号
+	 * Setter for <code>machine.identity_card.card_id</code>. 身份证号
 	 */
 	public IdentityCardRecord setCardId(java.lang.String value) {
 		setValue(1, value);
@@ -37,14 +37,14 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.card_id</code>. 身份证号
+	 * Getter for <code>machine.identity_card.card_id</code>. 身份证号
 	 */
 	public java.lang.String getCardId() {
 		return (java.lang.String) getValue(1);
 	}
 
 	/**
-	 * Setter for <code>coach.identity_card.name</code>. 姓名
+	 * Setter for <code>machine.identity_card.name</code>. 姓名
 	 */
 	public IdentityCardRecord setName(java.lang.String value) {
 		setValue(2, value);
@@ -52,14 +52,14 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.name</code>. 姓名
+	 * Getter for <code>machine.identity_card.name</code>. 姓名
 	 */
 	public java.lang.String getName() {
 		return (java.lang.String) getValue(2);
 	}
 
 	/**
-	 * Setter for <code>coach.identity_card.nation</code>. 民族
+	 * Setter for <code>machine.identity_card.nation</code>. 民族
 	 */
 	public IdentityCardRecord setNation(java.lang.String value) {
 		setValue(3, value);
@@ -67,14 +67,14 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.nation</code>. 民族
+	 * Getter for <code>machine.identity_card.nation</code>. 民族
 	 */
 	public java.lang.String getNation() {
 		return (java.lang.String) getValue(3);
 	}
 
 	/**
-	 * Setter for <code>coach.identity_card.birth_date</code>. 出生日期
+	 * Setter for <code>machine.identity_card.birth_date</code>. 出生日期
 	 */
 	public IdentityCardRecord setBirthDate(java.sql.Timestamp value) {
 		setValue(4, value);
@@ -82,14 +82,14 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.birth_date</code>. 出生日期
+	 * Getter for <code>machine.identity_card.birth_date</code>. 出生日期
 	 */
 	public java.sql.Timestamp getBirthDate() {
 		return (java.sql.Timestamp) getValue(4);
 	}
 
 	/**
-	 * Setter for <code>coach.identity_card.address</code>. 地址
+	 * Setter for <code>machine.identity_card.address</code>. 地址
 	 */
 	public IdentityCardRecord setAddress(java.lang.String value) {
 		setValue(5, value);
@@ -97,14 +97,14 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.address</code>. 地址
+	 * Getter for <code>machine.identity_card.address</code>. 地址
 	 */
 	public java.lang.String getAddress() {
 		return (java.lang.String) getValue(5);
 	}
 
 	/**
-	 * Setter for <code>coach.identity_card.sex</code>. 性别
+	 * Setter for <code>machine.identity_card.sex</code>. 性别
 	 */
 	public IdentityCardRecord setSex(java.lang.Byte value) {
 		setValue(6, value);
@@ -112,14 +112,14 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.sex</code>. 性别
+	 * Getter for <code>machine.identity_card.sex</code>. 性别
 	 */
 	public java.lang.Byte getSex() {
 		return (java.lang.Byte) getValue(6);
 	}
 
 	/**
-	 * Setter for <code>coach.identity_card.modify_time</code>.
+	 * Setter for <code>machine.identity_card.modify_time</code>.
 	 */
 	public IdentityCardRecord setModifyTime(java.sql.Timestamp value) {
 		setValue(7, value);
@@ -127,14 +127,14 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.modify_time</code>.
+	 * Getter for <code>machine.identity_card.modify_time</code>.
 	 */
 	public java.sql.Timestamp getModifyTime() {
 		return (java.sql.Timestamp) getValue(7);
 	}
 
 	/**
-	 * Setter for <code>coach.identity_card.create_time</code>.
+	 * Setter for <code>machine.identity_card.create_time</code>.
 	 */
 	public IdentityCardRecord setCreateTime(java.sql.Timestamp value) {
 		setValue(8, value);
@@ -142,7 +142,7 @@ public class IdentityCardRecord extends org.jooq.impl.UpdatableRecordImpl<com.qu
 	}
 
 	/**
-	 * Getter for <code>coach.identity_card.create_time</code>.
+	 * Getter for <code>machine.identity_card.create_time</code>.
 	 */
 	public java.sql.Timestamp getCreateTime() {
 		return (java.sql.Timestamp) getValue(8);

@@ -1,7 +1,7 @@
 package com.qunar.coach.machine.webapp.controller;
 
 import com.qunar.coach.machine.service.MachineService;
-import com.qunar.coach.machine.webapp.constant.MachineRequestParameter;
+import com.qunar.coach.machine.webapp.constant.RequestParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 /**
  * Created by niuli on 15-10-21.
  */
-
 @Controller
 public class UpdateController {
     private static final Logger LOG = LoggerFactory.getLogger(UpdateController.class);
@@ -25,10 +24,10 @@ public class UpdateController {
 
     @RequestMapping("/api/v1/update")
     @ResponseBody
-    public String getVideoBeanList(
-            @RequestParam(value = MachineRequestParameter.VERSION,
+    public String getUpdateInfo(
+            @RequestParam(value = RequestParameter.VERSION,
                     required = false, defaultValue = "") String version,
-            @RequestParam(value = MachineRequestParameter.MACHINE_ID,
+            @RequestParam(value = RequestParameter.MACHINE_ID,
                     required = false, defaultValue = "") String machineId) {
 
         //TODO: check param

@@ -1,19 +1,18 @@
 package com.qunar.coach.machine.service.impl;
 
-import com.qunar.coach.machine.core.model.MachineStatus;
-import com.qunar.coach.machine.core.utils.DeviceIdProducer;
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qunar.coach.machine.core.model.APIException;
+import com.qunar.coach.machine.core.model.MachineStatus;
+import com.qunar.coach.machine.core.utils.DeviceIdProducer;
 import com.qunar.coach.machine.dao.model.tables.daos.MachineDao;
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 import com.qunar.coach.machine.dao.model.tables.records.MachineRecord;
 import com.qunar.coach.machine.service.JooqService;
 import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.service.utils.RecordMapperUtils;
-
-import java.sql.Timestamp;
 
 /**
  * Created by niuli on 15-10-25.
@@ -23,6 +22,8 @@ public class MachineServiceImpl extends JooqService implements MachineService {
 
     @Autowired
     private MachineDao machineDao;
+
+    private static int MACHINE_PAPER_NUMBER = 6000;
 
     @Override
     public Machine addMachine(Machine machine) {
@@ -42,6 +43,24 @@ public class MachineServiceImpl extends JooqService implements MachineService {
         machineDao.update(machine);
     }
 
+    private Machine setMachineAlive(Machine machine){
+        long start = System.currentTimeMillis();
+        Timestamp ts = new Timestamp(start);
+        machine.setSyncTime(ts);
+        machine.setLogin(MachineStatus.ONLINE);
+        machine.setSyncTime(ts);
+        return machine;
+    }
+
+    private Machine updateMachineNumber(Machine existMachine, Machine inputMachine){
+        int totalPaperUsed = inputMachine.getPaperUsed() + existMachine.getPaperUsed();
+        existMachine.setPaperUsed(totalPaperUsed);
+        existMachine.setPaperNumber(MACHINE_PAPER_NUMBER - totalPaperUsed);
+        existMachine.setSucTimes(existMachine.getSucTimes() + inputMachine.getSucTimes());
+        existMachine.setFailedTimes(existMachine.getFailedTimes() + inputMachine.getFailedTimes());
+        return existMachine;
+    }
+
     @Override
     public Machine updateMachineInfoByHeartBeat(Machine machine){
         Machine existMachine = machineDao.fetchOneByDeviceId(machine.getDeviceId());
@@ -49,15 +68,9 @@ public class MachineServiceImpl extends JooqService implements MachineService {
             return null;
         }
         else {
-            long start = System.currentTimeMillis();
-            Timestamp ts = new Timestamp(start);
-            machine.setSyncTime(ts);
-            existMachine.setLogin(MachineStatus.ONLINE);
-            existMachine.setSyncTime(ts);
-            existMachine.setPaperNumber(machine.getPaperNumber());
-            existMachine.setPaperUsed(machine.getPaperUsed());
-            existMachine.setSucTimes(machine.getSucTimes());
-            existMachine.setFailedTimes(machine.getFailedTimes());
+            setMachineAlive(existMachine);
+            updateMachineNumber(existMachine, machine);
+            existMachine.setMaintenance(0);
             machineDao.update(existMachine);
             return existMachine;
         }
@@ -104,5 +117,14 @@ public class MachineServiceImpl extends JooqService implements MachineService {
         int sequenceNumber = machine.getSequenceNumber();
         String stationInfo = machine.getStationInfo();
         return DeviceIdProducer.produceDeviceId(stationInfo, city, province, sequenceNumber);
+    }
+
+    @Override
+    public boolean isDeviceExist(String deviceId){
+        if (machineDao.fetchByDeviceId(deviceId) == null){
+            return false;
+        }
+
+        return true;
     }
 }

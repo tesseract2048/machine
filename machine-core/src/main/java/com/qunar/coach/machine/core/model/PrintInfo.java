@@ -12,6 +12,8 @@ public class PrintInfo {
     // 超时时间
     private long timeOut;
 
+    private String ticketId;
+
     public long getStartTime() {
         return startTime;
     }
@@ -28,13 +30,12 @@ public class PrintInfo {
         this.timeOut = timeOut;
     }
 
-    public int getTicketId() {
+    public String getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
     }
 
-    private int ticketId;
 }

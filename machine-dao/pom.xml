@@ -116,7 +116,7 @@
                                     <includes>.*</includes>
                                     <excludes>xdual</excludes>
                                     <!--database name-->
-                                    <inputSchema>coach</inputSchema>
+                                    <inputSchema>machine</inputSchema>
                                     <customTypes>
                                         <customType>
                                             <name>com.qunar.coach.machine.core.model.MachineStatus</name>

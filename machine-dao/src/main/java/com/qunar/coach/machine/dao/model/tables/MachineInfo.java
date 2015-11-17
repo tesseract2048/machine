@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineInfo extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao.model.tables.records.MachineInfoRecord> {
 
-	private static final long serialVersionUID = 1466492214;
+	private static final long serialVersionUID = 93407752;
 
 	/**
-	 * The singleton instance of <code>coach.machine_info</code>
+	 * The singleton instance of <code>machine.machine_info</code>
 	 */
 	public static final com.qunar.coach.machine.dao.model.tables.MachineInfo MACHINE_INFO = new com.qunar.coach.machine.dao.model.tables.MachineInfo();
 
@@ -27,29 +27,29 @@ public class MachineInfo extends org.jooq.impl.TableImpl<com.qunar.coach.machine
 	}
 
 	/**
-	 * The column <code>coach.machine_info.id</code>.
+	 * The column <code>machine.machine_info.id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.MachineInfoRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>coach.machine_info.machine_id</code>.
+	 * The column <code>machine.machine_info.machine_id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.MachineInfoRecord, java.lang.Long> MACHINE_ID = createField("machine_id", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
 	/**
-	 * The column <code>coach.machine_info.print_mode</code>.
+	 * The column <code>machine.machine_info.print_mode</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.MachineInfoRecord, java.lang.Integer> PRINT_MODE = createField("print_mode", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
-	 * Create a <code>coach.machine_info</code> table reference
+	 * Create a <code>machine.machine_info</code> table reference
 	 */
 	public MachineInfo() {
 		this("machine_info", null);
 	}
 
 	/**
-	 * Create an aliased <code>coach.machine_info</code> table reference
+	 * Create an aliased <code>machine.machine_info</code> table reference
 	 */
 	public MachineInfo(java.lang.String alias) {
 		this(alias, com.qunar.coach.machine.dao.model.tables.MachineInfo.MACHINE_INFO);
@@ -60,7 +60,7 @@ public class MachineInfo extends org.jooq.impl.TableImpl<com.qunar.coach.machine
 	}
 
 	private MachineInfo(java.lang.String alias, org.jooq.Table<com.qunar.coach.machine.dao.model.tables.records.MachineInfoRecord> aliased, org.jooq.Field<?>[] parameters) {
-		super(alias, com.qunar.coach.machine.dao.model.Coach.COACH, aliased, parameters, "");
+		super(alias, com.qunar.coach.machine.dao.model.Machine.MACHINE, aliased, parameters, "");
 	}
 
 	/**

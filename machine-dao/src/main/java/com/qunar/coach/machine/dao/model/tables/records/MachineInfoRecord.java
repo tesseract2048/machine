@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MachineInfoRecord extends org.jooq.impl.UpdatableRecordImpl<com.qunar.coach.machine.dao.model.tables.records.MachineInfoRecord> implements org.jooq.Record3<java.lang.Integer, java.lang.Long, java.lang.Integer> {
 
-	private static final long serialVersionUID = 1396220430;
+	private static final long serialVersionUID = 338415016;
 
 	/**
-	 * Setter for <code>coach.machine_info.id</code>.
+	 * Setter for <code>machine.machine_info.id</code>.
 	 */
 	public MachineInfoRecord setId(java.lang.Integer value) {
 		setValue(0, value);
@@ -22,14 +22,14 @@ public class MachineInfoRecord extends org.jooq.impl.UpdatableRecordImpl<com.qun
 	}
 
 	/**
-	 * Getter for <code>coach.machine_info.id</code>.
+	 * Getter for <code>machine.machine_info.id</code>.
 	 */
 	public java.lang.Integer getId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>coach.machine_info.machine_id</code>.
+	 * Setter for <code>machine.machine_info.machine_id</code>.
 	 */
 	public MachineInfoRecord setMachineId(java.lang.Long value) {
 		setValue(1, value);
@@ -37,14 +37,14 @@ public class MachineInfoRecord extends org.jooq.impl.UpdatableRecordImpl<com.qun
 	}
 
 	/**
-	 * Getter for <code>coach.machine_info.machine_id</code>.
+	 * Getter for <code>machine.machine_info.machine_id</code>.
 	 */
 	public java.lang.Long getMachineId() {
 		return (java.lang.Long) getValue(1);
 	}
 
 	/**
-	 * Setter for <code>coach.machine_info.print_mode</code>.
+	 * Setter for <code>machine.machine_info.print_mode</code>.
 	 */
 	public MachineInfoRecord setPrintMode(java.lang.Integer value) {
 		setValue(2, value);
@@ -52,7 +52,7 @@ public class MachineInfoRecord extends org.jooq.impl.UpdatableRecordImpl<com.qun
 	}
 
 	/**
-	 * Getter for <code>coach.machine_info.print_mode</code>.
+	 * Getter for <code>machine.machine_info.print_mode</code>.
 	 */
 	public java.lang.Integer getPrintMode() {
 		return (java.lang.Integer) getValue(2);

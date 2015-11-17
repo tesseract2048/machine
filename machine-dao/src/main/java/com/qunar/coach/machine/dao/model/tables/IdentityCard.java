@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class IdentityCard extends org.jooq.impl.TableImpl<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord> {
 
-	private static final long serialVersionUID = 1870492898;
+	private static final long serialVersionUID = -757121010;
 
 	/**
-	 * The singleton instance of <code>coach.identity_card</code>
+	 * The singleton instance of <code>machine.identity_card</code>
 	 */
 	public static final com.qunar.coach.machine.dao.model.tables.IdentityCard IDENTITY_CARD = new com.qunar.coach.machine.dao.model.tables.IdentityCard();
 
@@ -27,59 +27,59 @@ public class IdentityCard extends org.jooq.impl.TableImpl<com.qunar.coach.machin
 	}
 
 	/**
-	 * The column <code>coach.identity_card.id</code>.
+	 * The column <code>machine.identity_card.id</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.lang.Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>coach.identity_card.card_id</code>. 身份证号
+	 * The column <code>machine.identity_card.card_id</code>. 身份证号
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.lang.String> CARD_ID = createField("card_id", org.jooq.impl.SQLDataType.VARCHAR.length(24), this, "身份证号");
 
 	/**
-	 * The column <code>coach.identity_card.name</code>. 姓名
+	 * The column <code>machine.identity_card.name</code>. 姓名
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.lang.String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR.length(20), this, "姓名");
 
 	/**
-	 * The column <code>coach.identity_card.nation</code>. 民族
+	 * The column <code>machine.identity_card.nation</code>. 民族
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.lang.String> NATION = createField("nation", org.jooq.impl.SQLDataType.VARCHAR.length(32), this, "民族");
 
 	/**
-	 * The column <code>coach.identity_card.birth_date</code>. 出生日期
+	 * The column <code>machine.identity_card.birth_date</code>. 出生日期
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.sql.Timestamp> BIRTH_DATE = createField("birth_date", org.jooq.impl.SQLDataType.TIMESTAMP, this, "出生日期");
 
 	/**
-	 * The column <code>coach.identity_card.address</code>. 地址
+	 * The column <code>machine.identity_card.address</code>. 地址
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.lang.String> ADDRESS = createField("address", org.jooq.impl.SQLDataType.CLOB.length(65535), this, "地址");
 
 	/**
-	 * The column <code>coach.identity_card.sex</code>. 性别
+	 * The column <code>machine.identity_card.sex</code>. 性别
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.lang.Byte> SEX = createField("sex", org.jooq.impl.SQLDataType.TINYINT, this, "性别");
 
 	/**
-	 * The column <code>coach.identity_card.modify_time</code>.
+	 * The column <code>machine.identity_card.modify_time</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.sql.Timestamp> MODIFY_TIME = createField("modify_time", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
 	/**
-	 * The column <code>coach.identity_card.create_time</code>.
+	 * The column <code>machine.identity_card.create_time</code>.
 	 */
 	public final org.jooq.TableField<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord, java.sql.Timestamp> CREATE_TIME = createField("create_time", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
 	/**
-	 * Create a <code>coach.identity_card</code> table reference
+	 * Create a <code>machine.identity_card</code> table reference
 	 */
 	public IdentityCard() {
 		this("identity_card", null);
 	}
 
 	/**
-	 * Create an aliased <code>coach.identity_card</code> table reference
+	 * Create an aliased <code>machine.identity_card</code> table reference
 	 */
 	public IdentityCard(java.lang.String alias) {
 		this(alias, com.qunar.coach.machine.dao.model.tables.IdentityCard.IDENTITY_CARD);
@@ -90,7 +90,7 @@ public class IdentityCard extends org.jooq.impl.TableImpl<com.qunar.coach.machin
 	}
 
 	private IdentityCard(java.lang.String alias, org.jooq.Table<com.qunar.coach.machine.dao.model.tables.records.IdentityCardRecord> aliased, org.jooq.Field<?>[] parameters) {
-		super(alias, com.qunar.coach.machine.dao.model.Coach.COACH, aliased, parameters, "");
+		super(alias, com.qunar.coach.machine.dao.model.Machine.MACHINE, aliased, parameters, "");
 	}
 
 	/**

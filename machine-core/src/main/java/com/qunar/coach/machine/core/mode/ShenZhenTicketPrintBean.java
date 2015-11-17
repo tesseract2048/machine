@@ -39,6 +39,19 @@ public class ShenZhenTicketPrintBean {
     //票号
     private String ticket_number;
 
+    //票序列号
+    private String ticketId;
+
+    private String passengerName;
+
+    public String getPassengerName() {
+        return passengerName;
+    }
+
+    public void setPassengerName(String passengerName) {
+        this.passengerName = passengerName;
+    }
+
     public String getLine() {
         return line;
     }
@@ -126,5 +139,14 @@ public class ShenZhenTicketPrintBean {
     public void setTicket_number(String ticket_number) {
         this.ticket_number = ticket_number;
     }
+
+    public String getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
+    }
+
 
 }

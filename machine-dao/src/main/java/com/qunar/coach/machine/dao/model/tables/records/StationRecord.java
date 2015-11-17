@@ -11,10 +11,10 @@ package com.qunar.coach.machine.dao.model.tables.records;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class StationRecord extends org.jooq.impl.UpdatableRecordImpl<com.qunar.coach.machine.dao.model.tables.records.StationRecord> implements org.jooq.Record3<java.lang.Integer, java.lang.String, java.lang.Integer> {
 
-	private static final long serialVersionUID = -1585687890;
+	private static final long serialVersionUID = -1700651878;
 
 	/**
-	 * Setter for <code>coach.station.id</code>.
+	 * Setter for <code>machine.station.id</code>.
 	 */
 	public StationRecord setId(java.lang.Integer value) {
 		setValue(0, value);
@@ -22,14 +22,14 @@ public class StationRecord extends org.jooq.impl.UpdatableRecordImpl<com.qunar.c
 	}
 
 	/**
-	 * Getter for <code>coach.station.id</code>.
+	 * Getter for <code>machine.station.id</code>.
 	 */
 	public java.lang.Integer getId() {
 		return (java.lang.Integer) getValue(0);
 	}
 
 	/**
-	 * Setter for <code>coach.station.station_name</code>.
+	 * Setter for <code>machine.station.station_name</code>.
 	 */
 	public StationRecord setStationName(java.lang.String value) {
 		setValue(1, value);
@@ -37,14 +37,14 @@ public class StationRecord extends org.jooq.impl.UpdatableRecordImpl<com.qunar.c
 	}
 
 	/**
-	 * Getter for <code>coach.station.station_name</code>.
+	 * Getter for <code>machine.station.station_name</code>.
 	 */
 	public java.lang.String getStationName() {
 		return (java.lang.String) getValue(1);
 	}
 
 	/**
-	 * Setter for <code>coach.station.city_id</code>.
+	 * Setter for <code>machine.station.city_id</code>.
 	 */
 	public StationRecord setCityId(java.lang.Integer value) {
 		setValue(2, value);
@@ -52,7 +52,7 @@ public class StationRecord extends org.jooq.impl.UpdatableRecordImpl<com.qunar.c
 	}
 
 	/**
-	 * Getter for <code>coach.station.city_id</code>.
+	 * Getter for <code>machine.station.city_id</code>.
 	 */
 	public java.lang.Integer getCityId() {
 		return (java.lang.Integer) getValue(2);
