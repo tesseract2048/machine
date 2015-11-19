@@ -69,7 +69,7 @@ public class MachineServiceImpl extends JooqService implements MachineService {
         }
         else {
             setMachineAlive(existMachine);
-            updateMachineNumber(existMachine, machine);
+            //updateMachineNumber(existMachine, machine);
             existMachine.setMaintenance(0);
             machineDao.update(existMachine);
             return existMachine;

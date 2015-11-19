@@ -29,11 +29,12 @@ public class MachineController {
 
     private static final String NOT_REGISTER = "NULL";
 
-    private static final String UPDATE_URL = "http://localhost:10086/nw.zip";
+    private static final String UPDATE_URL = "http://l-coach.cache.f.dev.cn0.qunar.com/qunarTickets_build101_patch.zip";
 
-    private static final String VERSION = "v1.0.1";
+    private static final String VERSION = "v1.0.2";
 
-    private static final String IS_NW_INCLUDE = "true";
+    // 0 means false, 1 means true.
+    private static final String IS_NW_INCLUDE = "0";
 
     @Autowired
     private MachineService machineService;

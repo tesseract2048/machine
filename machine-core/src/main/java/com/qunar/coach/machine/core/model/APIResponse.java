@@ -1,6 +1,7 @@
 package com.qunar.coach.machine.core.model;
 
-import java.util.Map;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Created by niuli on 15-11-1.
@@ -24,6 +25,33 @@ public class APIResponse<T> {
 
     public static final int suc = 0;
     public static final int fail = -1;
+
+    public static <T> APIResponse<T> success(T data) {
+        APIResponse<T> apiResponse = success();
+        apiResponse.setT(data);
+        return apiResponse;
+    }
+
+    public static <T> APIResponse<T> success() {
+        return newAPIResponse(ResponseCode.CODE_OK);
+    }
+
+    public static <T> APIResponse<T> failed(ResponseCode responseCode) {
+        return newAPIResponse(responseCode);
+    }
+
+    public static <T> APIResponse<T> failed(ResponseCode responseCode, String msg) {
+        APIResponse<T> apiResponse = failed(responseCode);
+        apiResponse.msg = msg;
+        return apiResponse;
+    }
+
+    private static <T> APIResponse<T> newAPIResponse(ResponseCode responseCode) {
+        APIResponse<T> apiResponse = new APIResponse<>();
+        apiResponse.code = responseCode.getCode();
+        apiResponse.msg = responseCode.getMsg();
+        return apiResponse;
+    }
 
     public int getCode() {
         return code;
@@ -59,11 +87,6 @@ public class APIResponse<T> {
 
     @Override
     public String toString() {
-        return "APIResponse{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", t=" + t +
-                ", u=" + u +
-                '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
     }
 }

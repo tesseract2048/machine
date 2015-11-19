@@ -14,6 +14,7 @@
         <module>machine-core</module>
         <module>machine-dao</module>
         <module>machine-timer</module>
+        <module>machine-adapter</module>
     </modules>
 
     <build>
@@ -48,7 +49,55 @@
                         </delimiters>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.1.2</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>2.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.11</version>
+                    <configuration>
+                        <forkMode>once</forkMode>
+                        <argLine>-Dfile.encoding=UTF-8 -XX:+HeapDumpOnOutOfMemoryError
+                            -XX:HeapDumpPath=/tmp</argLine>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.0.1</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-versions</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <rules>
+                            <AlwaysPass />
+                        </rules>
+                        <fail>true</fail>
+                    </configuration>
+                </plugin>
             </plugins>
+
         </pluginManagement>
     </build>
 
@@ -78,6 +127,7 @@
         <hadoop.stream.version>2.3.0-mr1-cdh5.0.0</hadoop.stream.version>
         <hbase.version>0.96.1.1-cdh5.0.0</hbase.version>
         <zookeeper.version>3.4.5-cdh5.0.0</zookeeper.version>
+        <guava.version>18.0</guava.version>
     </properties>
 
     <dependencyManagement>
@@ -110,9 +160,23 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
-                <version>${org.apache.httpcomponents.version}</version>
+                <version>4.4</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-codec</groupId>
+                        <artifactId>commons-codec</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
-
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.9</version>
+            </dependency>
             <!-- Logging -->
             <dependency>
                 <groupId>log4j</groupId>
@@ -189,6 +253,13 @@
                 <version>${junit.version}</version>
             </dependency>
 
+            <!-- google guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
             <!-- Apache Utils -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -208,26 +279,6 @@
                 <version>${org.apache.commons.commons-io.version}</version>
             </dependency>
             <!-- cache -->
-            <dependency>
-                <groupId>redis.clients</groupId>
-                <artifactId>jedis</artifactId>
-                <version>${redis.clients.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-redis</artifactId>
-                <version>${org.springframework.data.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>log4j</artifactId>
-                        <groupId>log4j</groupId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>slf4j-log4j12</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
             <dependency>
                 <groupId>com.qunar.coach</groupId>
                 <artifactId>machine-core</artifactId>
@@ -343,6 +394,10 @@
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>jsp-2.1</artifactId>
             <version>6.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
         <!-- Test -->
         <dependency>

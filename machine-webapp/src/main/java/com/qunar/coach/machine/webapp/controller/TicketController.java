@@ -4,8 +4,6 @@ package com.qunar.coach.machine.webapp.controller;
  * Created by niuli on 15-10-21.
  */
 
-import javax.annotation.Resource;
-
 import com.qunar.coach.machine.core.mode.ShenZhenTicketPrintBean;
 import com.qunar.coach.machine.core.mode.StationType;
 import com.qunar.coach.machine.core.model.APIResponse;
@@ -13,20 +11,20 @@ import com.qunar.coach.machine.core.model.CoachTicket;
 import com.qunar.coach.machine.core.model.PrintInfo;
 import com.qunar.coach.machine.core.model.ResponseCode;
 import com.qunar.coach.machine.dao.model.tables.pojos.IdentityCard;
+import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.service.PersonIDService;
 import com.qunar.coach.machine.service.TicketService;
 import com.qunar.coach.machine.service.facade.TicketBeanFacade;
+import com.qunar.coach.machine.webapp.constant.RequestParameter;
 import com.qunar.coach.machine.webapp.mocker.CoachTicketMocker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.qunar.coach.machine.service.MachineService;
-import com.qunar.coach.machine.webapp.constant.RequestParameter;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,10 +155,7 @@ public class TicketController {
         System.out.println("[query_ticket] key: " + key);
         //System.out.println("[query_ticket] passWord: " + passWord);
         if (!machineService.isDeviceExist(deviceId)){
-            APIResponse<List<CoachTicket>> api = new APIResponse<>();
-            api.setCode(ResponseCode.INVALID_MACHINE);
-            api.setMsg("Device id not exist.");
-            return api;
+            return APIResponse.failed(ResponseCode.INVALID_MACHINE);
         }
 
         /**
@@ -196,10 +191,7 @@ public class TicketController {
             required = true, defaultValue = "") String fetchNumber) {
 
         if (!machineService.isDeviceExist(deviceId)){
-            APIResponse<List<ShenZhenTicketPrintBean>> api = new APIResponse<>();
-            api.setCode(ResponseCode.INVALID_MACHINE);
-            api.setMsg("Device id not exist.");
-            return api;
+            return APIResponse.failed(ResponseCode.INVALID_MACHINE);
         }
 
         //personIDService.addPerson(identityCard);
