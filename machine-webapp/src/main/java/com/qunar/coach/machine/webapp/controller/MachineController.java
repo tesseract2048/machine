@@ -1,5 +1,6 @@
 package com.qunar.coach.machine.webapp.controller;
 
+import com.qunar.coach.machine.core.model.ResponseCode;
 import lombok.extern.slf4j.Slf4j;
 
 import org.slf4j.Logger;
@@ -51,27 +52,26 @@ public class MachineController {
     @ResponseBody
     public APIResponse<Machine> sendHeartBeat(Machine machine) {
         try {
-            APIResponse<Machine> response = new APIResponse<>();
+            //APIResponse<Machine> response = new APIResponse<>();
             String deviceId = machine.getDeviceId();
             System.out.println("[heartbeat] deviceId: " + deviceId);
 
             Machine retMachine = machineService.updateMachineInfoByHeartBeat(machine);
             if (null == retMachine) {
-                response.setCode(APIResponse.fail);
+                return APIResponse.failed(ResponseCode.INVALID_MACHINE);
             } else {
-                response.setCode(APIResponse.suc);
+                APIResponse<Machine> response = APIResponse.success(retMachine);
+                UpdateData updateData = new UpdateData();
+                updateData.setIsNwIncluded(IS_NW_INCLUDE);
+                updateData.setUpdateUrl(UPDATE_URL);
+                updateData.setVersion(VERSION);
+                response.setU(updateData);
+                return response;
             }
-            response.setT(retMachine);
-            UpdateData updateData = new UpdateData();
-            updateData.setIsNwIncluded(IS_NW_INCLUDE);
-            updateData.setUpdateUrl(UPDATE_URL);
-            updateData.setVersion(VERSION);
-            response.setU(updateData);
-            return response;
         }
         catch (Exception e) {
             System.out.println("[heartbeat] err " + e);
-            return new APIResponse<>();
+            return APIResponse.failed(ResponseCode.SYSTEM_ERROR);
         }
     }
 
@@ -87,18 +87,13 @@ public class MachineController {
         String deviceId = machine.getDeviceId();
         if (!isDeviceNotRegistered(deviceId)){
             System.out.println("device has registered. id: " + deviceId);
-            APIResponse<Machine> response = new APIResponse<>();
-            response.setCode(APIResponse.fail);
-            response.setMsg("Registered.");
-            return response;
+            return APIResponse.failed(ResponseCode.REQUEST_PARAM_ERROR);
         }
 
         machine.setDeviceId(Md5Util.md5(machineService.produceDeviceMd5(machine)));
         machine.setLogin(MachineStatus.ONLINE);
         Machine added = machineService.addMachine(machine);
-        APIResponse<Machine> response = new APIResponse<>();
-        response.setT(added);
-        return response;
+        return APIResponse.success(added);
     }
 
     private boolean isDeviceNotRegistered(String deviceId){

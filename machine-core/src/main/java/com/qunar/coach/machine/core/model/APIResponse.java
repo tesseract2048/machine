@@ -13,7 +13,7 @@ public class APIResponse<T> {
     private T t;
     private Object u;
 
-    public APIResponse() {
+    protected APIResponse() {
         this.code = APIResponse.suc;
     }
 

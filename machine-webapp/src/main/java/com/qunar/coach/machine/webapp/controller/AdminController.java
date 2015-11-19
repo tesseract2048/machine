@@ -43,18 +43,16 @@ public class AdminController {
     }
 
     @RequestMapping("/api/v1/admin/{model}")
-    public APIResponse<Object> listEntity(
+    public APIResponse<List<Map>> listEntity(
             @PathVariable(value = "model") String model) {
         assert (tables != null);
         List<Map> records = context.selectFrom(tables.get(model.toLowerCase())).fetchMaps();
 
-        APIResponse<Object> response = new APIResponse<>();
-        response.setT(records);
-        return response;
+        return APIResponse.success(records);
     }
 
     @RequestMapping(value = "/api/v1/admin/{model}/{id}", method = RequestMethod.GET)
-    public APIResponse<Object> getEntity(
+    public APIResponse<Map> getEntity(
             @PathVariable(value = "model") String model,
             @PathVariable(value = "id") Integer id) {
         assert (tables != null);
@@ -62,9 +60,8 @@ public class AdminController {
         Map record = context.selectFrom(table)
                 .where(table.getIdentity().getField().eq(id)).fetchOneMap();
 
-        APIResponse<Object> response = new APIResponse<>();
-        response.setT(record);
-        return response;
+        return APIResponse.success(record);
+
     }
 
     @RequestMapping(value = "/api/v1/admin/{model}/{id}", method = RequestMethod.DELETE)
@@ -75,9 +72,8 @@ public class AdminController {
         Table table = tables.get(model.toLowerCase());
         int rowsAffected = context.delete(table).where(table.getIdentity().getField().eq(id)).execute();
 
-        APIResponse<Object> response = new APIResponse<>();
-        response.setT(rowsAffected);
-        return response;
+        return APIResponse.success();
+
     }
 
     @RequestMapping(value = "/api/v1/admin/{model}", method = RequestMethod.PUT)
@@ -94,9 +90,8 @@ public class AdminController {
             }
         }
         int rowsAffected = ((UpdatableRecord) record).insert();
-        APIResponse<Object> response = new APIResponse<>();
-        response.setT(rowsAffected);
-        return response;
+        return APIResponse.success();
+
     }
 
     @RequestMapping(value = "/api/v1/admin/{model}/{id}", method = RequestMethod.POST)
@@ -116,9 +111,8 @@ public class AdminController {
         }
         int rowsAffected = ((UpdatableRecord) record).update();
 
-        APIResponse<Object> response = new APIResponse<>();
-        response.setT(rowsAffected);
-        return response;
+        return APIResponse.success();
+
     }
 
 }

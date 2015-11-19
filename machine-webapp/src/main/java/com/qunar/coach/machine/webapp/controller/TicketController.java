@@ -4,6 +4,18 @@ package com.qunar.coach.machine.webapp.controller;
  * Created by niuli on 15-10-21.
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.qunar.coach.machine.core.mode.ShenZhenTicketPrintBean;
 import com.qunar.coach.machine.core.mode.StationType;
 import com.qunar.coach.machine.core.model.APIResponse;
@@ -17,16 +29,6 @@ import com.qunar.coach.machine.service.TicketService;
 import com.qunar.coach.machine.service.facade.TicketBeanFacade;
 import com.qunar.coach.machine.webapp.constant.RequestParameter;
 import com.qunar.coach.machine.webapp.mocker.CoachTicketMocker;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by niuli on 15-10-21.
@@ -58,15 +60,12 @@ public class TicketController {
         // siteProxy to lock ticket by ticket id.
         //2. Update mysql state.
         //3. echo ticket id back, append the timeout.
-        APIResponse<PrintInfo> infoAPIResponse = new APIResponse<>();
 
         PrintInfo printInfo = new PrintInfo();
         printInfo.setStartTime(System.currentTimeMillis());
         printInfo.setTimeOut(PRINT_TIMEOUT);
         printInfo.setTicketId(ticketId);
-        infoAPIResponse.setT(printInfo);
-
-        return infoAPIResponse;
+        return APIResponse.success(printInfo);
     }
 
     @RequestMapping(value = "/printDone", method = RequestMethod.GET)
@@ -86,7 +85,8 @@ public class TicketController {
          * 2. update ticket status in mysql.
          * 3. write back status code.
          */
-        return new APIResponse<>();
+        return APIResponse.success();
+
     }
 
     @RequestMapping(value = "/test_query_ticket", method = RequestMethod.GET)
@@ -124,7 +124,6 @@ public class TicketController {
          * */
 
         //personIDService.addPerson(identityCard);
-        APIResponse<List<ShenZhenTicketPrintBean>> apiResponse = new APIResponse<>();
 
         // facade ticket bean.
         List<CoachTicket> cts = CoachTicketMocker.mockList();
@@ -135,9 +134,7 @@ public class TicketController {
             shenZhenTicketPrintBeans.add(sztpb);
         }
 
-        apiResponse.setT(shenZhenTicketPrintBeans);
-
-        return apiResponse;
+        return APIResponse.success(shenZhenTicketPrintBeans);
     }
 
     @RequestMapping(value = "/query_ticket_by_card", method = RequestMethod.GET)
@@ -174,11 +171,8 @@ public class TicketController {
          * */
 
         personIDService.addPerson(identityCard);
-        APIResponse<List<CoachTicket>> api = new APIResponse<>();
-
-        api.setT(CoachTicketMocker.mockList());
         //Todo, mock data
-        return api;
+        return APIResponse.success(CoachTicketMocker.mockList());
     }
 
 
@@ -195,7 +189,6 @@ public class TicketController {
         }
 
         //personIDService.addPerson(identityCard);
-        APIResponse<List<ShenZhenTicketPrintBean>> apiResponse = new APIResponse<>();
 
         // facade ticket bean.
         List<CoachTicket> coachTickets = CoachTicketMocker.mockList();
@@ -207,9 +200,7 @@ public class TicketController {
             shenZhenTicketPrintBeans.add(sztpb);
         }
 
-        apiResponse.setT(shenZhenTicketPrintBeans);
-
-        return apiResponse;
+        return APIResponse.success(shenZhenTicketPrintBeans);
 
         /**
          * 1. update id card into mysql, that means first check the id card exist, add the card info if not exist.
