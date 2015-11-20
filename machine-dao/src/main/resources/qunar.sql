@@ -127,4 +127,28 @@ CREATE TABLE `ticket_print_info` (
   UNIQUE KEY `ticket_id_idx` (`ticket_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `shenzhen_ticket_info`;
+CREATE TABLE `shenzhen_ticket_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ticket_number` varchar(64) DEFAULT NULL,
+  `line` varchar(128) DEFAULT NULL,
+  `take_place` varchar(64) DEFAULT NULL,
+  `destination` varchar(64) DEFAULT NULL,
+  `start_time` datetime,
+  `coach_type` varchar(32) DEFAULT NULL,
+  `seat_number` varchar(32) DEFAULT NULL,
+  `price` decimal(8,1),
+  `check_port_number` varchar(32) DEFAULT NULL,
+  `sell_ticket_place` varchar(32) DEFAULT NULL,
+  `coach_number` varchar(32) DEFAULT NULL,
+  `ticket_id` varchar(32) DEFAULT NULL,
+  `passenger_name` varchar(32) DEFAULT NULL,
+  `card_id` varchar(64) DEFAULT NULL,
+  `modify_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ticket_id_idx` (`ticket_number`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 SET FOREIGN_KEY_CHECKS = 1;

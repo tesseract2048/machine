@@ -39,6 +39,11 @@ public class Tables {
 	public static final com.qunar.coach.machine.dao.model.tables.Province PROVINCE = com.qunar.coach.machine.dao.model.tables.Province.PROVINCE;
 
 	/**
+	 * The table machine.shenzhen_ticket_info
+	 */
+	public static final com.qunar.coach.machine.dao.model.tables.ShenzhenTicketInfo SHENZHEN_TICKET_INFO = com.qunar.coach.machine.dao.model.tables.ShenzhenTicketInfo.SHENZHEN_TICKET_INFO;
+
+	/**
 	 * The table machine.station
 	 */
 	public static final com.qunar.coach.machine.dao.model.tables.Station STATION = com.qunar.coach.machine.dao.model.tables.Station.STATION;

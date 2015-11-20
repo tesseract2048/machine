@@ -44,6 +44,8 @@ public class ShenZhenTicketPrintBean {
 
     private String passengerName;
 
+    private String idCard;
+
     public String getPassengerName() {
         return passengerName;
     }
@@ -148,5 +150,11 @@ public class ShenZhenTicketPrintBean {
         this.ticketId = ticketId;
     }
 
+    public String getIdCard() {
+        return idCard;
+    }
 
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
 }

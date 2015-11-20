@@ -53,6 +53,11 @@ public class TicketServiceImpl extends JooqService implements TicketService {
         return new PrintInfo();
     }
 
+    @Override
+    public void saveTicket(TicketBean ticketBean){
+        ;
+    }
+
     private void change2PrintDone(String machineId, String ticketId) {
         int ret = getContext().update(TICKET_PRINT_INFO).set(TICKET_PRINT_INFO.STATUS,
                 TicketStatus.FINISH).execute();

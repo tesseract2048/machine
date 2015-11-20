@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +61,7 @@ public class TicketController {
         // siteProxy to lock ticket by ticket id.
         //2. Update mysql state.
         //3. echo ticket id back, append the timeout.
+        System.out.println("[printStart] ticketId: " + ticketId + "deviceId:" + deviceId);
 
         PrintInfo printInfo = new PrintInfo();
         printInfo.setStartTime(System.currentTimeMillis());
@@ -72,10 +74,10 @@ public class TicketController {
     @ResponseBody
     public APIResponse<PrintInfo> getVideoBeanList(
             @RequestParam(value = RequestParameter.DEVICE_ID,
-                    required = true, defaultValue = "") String machineId,
+                    required = true, defaultValue = "") String deviceId,
             @RequestParam(value = RequestParameter.TICKET_ID,
                     required = true, defaultValue = "") String ticketId) {
-
+        System.out.println("[printDone] ticketId: " + ticketId + "deviceId:" + deviceId);
         PrintInfo printInfo = new PrintInfo();
         printInfo.setStartTime(System.currentTimeMillis());
         printInfo.setTimeOut(PRINT_TIMEOUT);
@@ -143,13 +145,14 @@ public class TicketController {
             IdentityCard identityCard,
             @RequestParam(value = RequestParameter.DEVICE_ID, required = true, defaultValue = "") String deviceId,
             @RequestParam(value = RequestParameter.KEY, required = false, defaultValue = "") String key){
-        System.out.println("[query_ticket] id: " + identityCard.getCardId());
-        System.out.println("[query_ticket] name: " + identityCard.getName());
-        System.out.println("[query_ticket] nation: " + identityCard.getNation());
-        System.out.println("[query_ticket] birthDate: " + identityCard.getBirthDate());
-        System.out.println("[query_ticket] address: " + identityCard.getAddress());
-        System.out.println("[query_ticket] sex: " + identityCard.getSex());
-        System.out.println("[query_ticket] key: " + key);
+        System.out.println("[query_ticket_by_card] id: " + identityCard.getCardId());
+        System.out.println("[query_ticket_by_card] name: " + identityCard.getName());
+        System.out.println("[query_ticket_by_card] nation: " + identityCard.getNation());
+        System.out.println("[query_ticket_by_card] birthDate: " + identityCard.getBirthDate());
+        System.out.println("[query_ticket_by_card] address: " + identityCard.getAddress());
+        System.out.println("[query_ticket_by_card] sex: " + identityCard.getSex());
+        System.out.println("[query_ticket_by_card] key: " + key);
+        System.out.println("IdentityCard : " + identityCard.toString());
         //System.out.println("[query_ticket] passWord: " + passWord);
         if (!machineService.isDeviceExist(deviceId)){
             return APIResponse.failed(ResponseCode.INVALID_MACHINE);
@@ -175,6 +178,12 @@ public class TicketController {
         return APIResponse.success(CoachTicketMocker.mockList());
     }
 
+    @RequestMapping(value = "/report_ticket")
+    @ResponseBody
+    public APIResponse<Object> reportTicket(APIResponse<Object> apiResponse){
+        System.out.println("[report_ticket] apiResponse: " + apiResponse.getT().toString());
+        return APIResponse.success(apiResponse.getT());
+    }
 
     @RequestMapping(value = "/query_by_number", method = RequestMethod.GET)
     @ResponseBody

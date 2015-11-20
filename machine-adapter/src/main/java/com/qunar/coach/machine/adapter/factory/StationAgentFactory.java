@@ -24,9 +24,9 @@ public class StationAgentFactory {
                 Properties props = new Properties();
                 //根据不同的服务器有不同的设置，下面是JBoss的设置
                 props.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory");
-                props.setProperty(Context.PROVIDER_URL, "192.168.122.231:1098");
+                props.setProperty(Context.PROVIDER_URL, "192.168.122.231:1099");
                 InitialContext ctx = new InitialContext(props);
-                stationAgent = (StationAgent)ctx.lookup("StationAgentBean/remote");
+                stationAgent = (StationAgent)ctx.lookup("ejb/station/StationAgent");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

@@ -11,7 +11,7 @@ package com.qunar.coach.machine.dao.model;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Machine extends org.jooq.impl.SchemaImpl {
 
-	private static final long serialVersionUID = -715160394;
+	private static final long serialVersionUID = 403499688;
 
 	/**
 	 * The singleton instance of <code>machine</code>
@@ -39,6 +39,7 @@ public class Machine extends org.jooq.impl.SchemaImpl {
 			com.qunar.coach.machine.dao.model.tables.Machine.MACHINE,
 			com.qunar.coach.machine.dao.model.tables.MachineInfo.MACHINE_INFO,
 			com.qunar.coach.machine.dao.model.tables.Province.PROVINCE,
+			com.qunar.coach.machine.dao.model.tables.ShenzhenTicketInfo.SHENZHEN_TICKET_INFO,
 			com.qunar.coach.machine.dao.model.tables.Station.STATION,
 			com.qunar.coach.machine.dao.model.tables.TicketPrintInfo.TICKET_PRINT_INFO);
 	}

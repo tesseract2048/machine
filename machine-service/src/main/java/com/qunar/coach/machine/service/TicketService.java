@@ -16,4 +16,7 @@ public interface TicketService {
     PrintInfo notifyPrintDone(String machineId, String ticketId);
 
     List<TicketBean> getTicketBeanList(String cardId);
+
+    void saveTicket(TicketBean ticketBean);
+
 }
