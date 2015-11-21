@@ -101,4 +101,11 @@ public class MachineController {
         return deviceId.equals(NOT_REGISTER);
     }
 
+    @RequestMapping(value = "/alarm", method = RequestMethod.POST)
+    @ResponseBody
+    public APIResponse<Boolean> sendAlarm(int machineId, String message) {
+        // TODO: send alarm
+        System.out.println("MachineID: " + machineId + ", Message: " + message);
+        return APIResponse.success(true);
+    }
 }

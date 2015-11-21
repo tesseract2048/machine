@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 
 // we use the ticket mode in SHEN ZHEN station.
-public class ShenZhenTicketPrintBean {
+public class ShenZhenTicketPrintBean implements TicketPrintBean {
     // 线路 A13838
     private String line;
 

@@ -3,7 +3,7 @@ package com.qunar.coach.machine.core.mode;
 /**
  * Created by niuli on 11/9/15.
  */
-public class YunnanTicketPrintBean {
+public class YunnanTicketPrintBean implements TicketPrintBean {
     // 发票号码
     private String number;
 
