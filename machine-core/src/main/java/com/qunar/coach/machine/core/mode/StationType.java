@@ -1,7 +1,7 @@
 package com.qunar.coach.machine.core.mode;
 
 /**
- * Created by niuli on 11/9/15.
+ * @author niuli
  */
 public enum StationType {
     UNKNOWN(0), YUNNAN(1), SHENZHEN(2), ;

@@ -26,7 +26,8 @@ import com.qunar.coach.machine.service.MachineService;
 @RequestMapping("/v1/machine")
 @Slf4j
 public class MachineController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MachineController.class);
+
+    private static final Logger logger = LoggerFactory.getLogger(MachineController.class);
 
     private static final String NOT_REGISTER = "NULL";
 
@@ -54,7 +55,7 @@ public class MachineController {
         try {
             //APIResponse<Machine> response = new APIResponse<>();
             String deviceId = machine.getDeviceId();
-            System.out.println("[heartbeat] deviceId: " + deviceId);
+            logger.info("[heartbeat] deviceId: " + deviceId);
 
             Machine retMachine = machineService.updateMachineInfoByHeartBeat(machine);
             if (null == retMachine) {
@@ -70,7 +71,7 @@ public class MachineController {
             }
         }
         catch (Exception e) {
-            System.out.println("[heartbeat] err " + e);
+            logger.info("[heartbeat] err " + e);
             return APIResponse.failed(ResponseCode.SYSTEM_ERROR);
         }
     }
@@ -83,10 +84,10 @@ public class MachineController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public APIResponse<Machine> registerMachine(Machine machine) {
-        System.out.println("[register] deviceId: " + machine.getDeviceId());
+        logger.info("[register] deviceId: " + machine.getDeviceId());
         String deviceId = machine.getDeviceId();
         if (!isDeviceNotRegistered(deviceId)){
-            System.out.println("device has registered. id: " + deviceId);
+            logger.info("device has registered. id: " + deviceId);
             return APIResponse.failed(ResponseCode.REQUEST_PARAM_ERROR);
         }
 
@@ -100,11 +101,4 @@ public class MachineController {
         return deviceId.equals(NOT_REGISTER);
     }
 
-    @RequestMapping(value = "/alarm", method = RequestMethod.POST)
-    @ResponseBody
-    public APIResponse<Boolean> sendAlarm(int machineId, String message) {
-        // TODO: send alarm
-        System.out.println("MachineID: " + machineId + ", Message: " + message);
-        return APIResponse.success(true);
-    }
 }

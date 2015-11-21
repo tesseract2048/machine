@@ -10,7 +10,7 @@ import com.qunar.coach.machine.core.model.CoachTicket;
  */
 public class TicketBeanFacade {
 
-    public static Object facade(StationType stationType, CoachTicket coachTicket){
+    public static <T> T facade(StationType stationType, CoachTicket coachTicket){
         if (stationType.equals(StationType.SHENZHEN)){
             ShenZhenTicketPrintBean ticketPrintBean = new ShenZhenTicketPrintBean();
             ticketPrintBean.setDestination(coachTicket.getCoachTo());
@@ -28,7 +28,7 @@ public class TicketBeanFacade {
             ticketPrintBean.setNumber("Rout-4440");
             ticketPrintBean.setSeat_number("19");
 
-            return ticketPrintBean;
+            return (T) ticketPrintBean;
         }
         else if (stationType.equals(StationType.YUNNAN)){
             YunnanTicketPrintBean yunnanTicketPrintBean = new YunnanTicketPrintBean();
@@ -36,7 +36,7 @@ public class TicketBeanFacade {
             yunnanTicketPrintBean.setDate(coachTicket.getCoachStartTime());
             yunnanTicketPrintBean.setExecutePrice(coachTicket.getTicketPrice());
 
-            return yunnanTicketPrintBean;
+            return (T) yunnanTicketPrintBean;
         }
 
         return null;

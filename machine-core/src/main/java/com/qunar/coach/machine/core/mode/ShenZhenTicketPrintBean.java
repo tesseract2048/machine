@@ -1,5 +1,7 @@
 package com.qunar.coach.machine.core.mode;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * Created by niuli on 11/9/15.
  */
@@ -156,5 +158,25 @@ public class ShenZhenTicketPrintBean {
 
     public void setIdCard(String idCard) {
         this.idCard = idCard;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("line", line)
+                .append("take_place", take_place)
+                .append("destination", destination)
+                .append("start_time", start_time)
+                .append("type", type)
+                .append("seat_number", seat_number)
+                .append("price", price)
+                .append("check_port_number", check_port_number)
+                .append("sell_ticket_place", sell_ticket_place)
+                .append("number", number)
+                .append("ticket_number", ticket_number)
+                .append("ticketId", ticketId)
+                .append("passengerName", passengerName)
+                .append("idCard", idCard)
+                .toString();
     }
 }

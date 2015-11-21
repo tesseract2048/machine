@@ -14,7 +14,7 @@
         <module>machine-core</module>
         <module>machine-dao</module>
         <module>machine-timer</module>
-        <!--<module>machine-adapter</module>-->
+        <module>machine-adapter</module>
     </modules>
 
     <build>

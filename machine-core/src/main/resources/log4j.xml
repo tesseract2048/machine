@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="[%d{HH:mm:ss,SSS}][%p:%t:%F(%L)][req_id:%X{requestId}] %m%n " />
+        </layout>
+    </appender>
+
+    <appender name="NULL" class="org.apache.log4j.ConsoleAppender">
+        <param name="Threshold" value="OFF" />
+    </appender>
+
+    <appender name="INFO" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="./logs/service.INFO" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true"/>
+        <param name="Threshold" value="INFO" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{HH:mm:ss,SSS}][%p:%t:%c{1}][req_id:%X{requestId}] %m%n " />
+        </layout>
+    </appender>
+
+    <appender name="WARN" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="./logs/service.WARN" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true"/>
+        <param name="Threshold" value="WARN" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{HH:mm:ss,SSS}][%p:%t:%c{1}][req_id:%X{requestId}] %m%n " />
+        </layout>
+    </appender>
+
+    <appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="./logs/service.ERROR" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true"/>
+        <param name="Threshold" value="ERROR" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{HH:mm:ss,SSS}][%p:%t:%c{1}][req_id:%X{requestId}] %m%n " />
+        </layout>
+    </appender>
+
+    <logger name="com.qunar.coach">
+        <level value="INFO" />
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="INFO" />
+    </logger>
+
+    <logger name="org.apache">
+        <level value="WARN" />
+    </logger>
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="INFO" />
+        <appender-ref ref="WARN" />
+        <appender-ref ref="ERROR" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</log4j:configuration>

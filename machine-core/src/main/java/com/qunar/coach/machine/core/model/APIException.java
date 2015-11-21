@@ -7,7 +7,7 @@ public class APIException extends RuntimeException {
     private APIResponse<String> apiResponse;
 
     public APIException(String msg) {
-        apiResponse = new APIResponse<String>(APIResponse.fail, msg, null);
+        apiResponse = new APIResponse<>(APIResponse.fail, msg, null);
     }
 
     public APIResponse<String> getApiResponse() {

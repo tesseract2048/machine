@@ -10,17 +10,16 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.qunar.coach.machine.core.model.*;
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.qunar.coach.machine.core.mode.ShenZhenTicketPrintBean;
 import com.qunar.coach.machine.core.mode.StationType;
-import com.qunar.coach.machine.core.model.APIResponse;
-import com.qunar.coach.machine.core.model.CoachTicket;
-import com.qunar.coach.machine.core.model.PrintInfo;
-import com.qunar.coach.machine.core.model.ResponseCode;
 import com.qunar.coach.machine.dao.model.tables.pojos.IdentityCard;
 import com.qunar.coach.machine.service.MachineService;
 import com.qunar.coach.machine.service.PersonIDService;
@@ -35,6 +34,9 @@ import com.qunar.coach.machine.webapp.mocker.CoachTicketMocker;
 @Controller
 @RequestMapping(value = "/v1/ticket")
 public class TicketController {
+
+    protected final static Logger logger = LoggerFactory.getLogger(TicketController.class);
+
     @Autowired
     private PersonIDService personIDService;
 
@@ -59,7 +61,7 @@ public class TicketController {
         // siteProxy to lock ticket by ticket id.
         //2. Update mysql state.
         //3. echo ticket id back, append the timeout.
-        System.out.println("[printStart] ticketId: " + ticketId + "deviceId:" + deviceId);
+        logger.info("[printStart] ticketId: " + ticketId + "deviceId:" + deviceId);
 
         PrintInfo printInfo = new PrintInfo();
         printInfo.setStartTime(System.currentTimeMillis());
@@ -75,7 +77,7 @@ public class TicketController {
                     required = true, defaultValue = "") String deviceId,
             @RequestParam(value = RequestParameter.TICKET_ID,
                     required = true, defaultValue = "") String ticketId) {
-        System.out.println("[printDone] ticketId: " + ticketId + "deviceId:" + deviceId);
+        logger.info("[printDone] ticketId: " + ticketId + "deviceId:" + deviceId);
         PrintInfo printInfo = new PrintInfo();
         printInfo.setStartTime(System.currentTimeMillis());
         printInfo.setTimeOut(PRINT_TIMEOUT);
@@ -100,13 +102,13 @@ public class TicketController {
         @RequestParam(value = "address", required = true) String address,
         @RequestParam(value = "gender", required = true) String sex,
         @RequestParam(value = "passWord", required = false) String passWord) {
-        System.out.println("[query_ticket] id: " + cardId);
-        System.out.println("[query_ticket] name: " + name);
-        System.out.println("[query_ticket] nation: " + nation);
-        System.out.println("[query_ticket] birthDate: " + birthDate);
-        System.out.println("[query_ticket] address: " + address);
-        System.out.println("[query_ticket] sex: " + sex);
-        System.out.println("[query_ticket] passWord: " + passWord);
+        logger.info("[query_ticket] id: " + cardId);
+        logger.info("[query_ticket] name: " + name);
+        logger.info("[query_ticket] nation: " + nation);
+        logger.info("[query_ticket] birthDate: " + birthDate);
+        logger.info("[query_ticket] address: " + address);
+        logger.info("[query_ticket] sex: " + sex);
+        logger.info("[query_ticket] passWord: " + passWord);
 
         /**
          * 1. update id card into mysql, that means first check the id card exist, add the card info if not exist.
@@ -130,7 +132,7 @@ public class TicketController {
 
         List<ShenZhenTicketPrintBean> shenZhenTicketPrintBeans = new ArrayList<>();
         for (CoachTicket ct: cts){
-            ShenZhenTicketPrintBean sztpb = (ShenZhenTicketPrintBean)ticketBeanFacade.facade(StationType.SHENZHEN, ct);
+            ShenZhenTicketPrintBean sztpb = TicketBeanFacade.facade(StationType.SHENZHEN, ct);
             shenZhenTicketPrintBeans.add(sztpb);
         }
 
@@ -143,15 +145,15 @@ public class TicketController {
             IdentityCard identityCard,
             @RequestParam(value = RequestParameter.DEVICE_ID, required = true, defaultValue = "") String deviceId,
             @RequestParam(value = RequestParameter.KEY, required = false, defaultValue = "") String key){
-        System.out.println("[query_ticket_by_card] id: " + identityCard.getCardId());
-        System.out.println("[query_ticket_by_card] name: " + identityCard.getName());
-        System.out.println("[query_ticket_by_card] nation: " + identityCard.getNation());
-        System.out.println("[query_ticket_by_card] birthDate: " + identityCard.getBirthDate());
-        System.out.println("[query_ticket_by_card] address: " + identityCard.getAddress());
-        System.out.println("[query_ticket_by_card] sex: " + identityCard.getSex());
-        System.out.println("[query_ticket_by_card] key: " + key);
-        System.out.println("IdentityCard : " + identityCard.toString());
-        //System.out.println("[query_ticket] passWord: " + passWord);
+        logger.info("[query_ticket_by_card] id: " + identityCard.getCardId());
+        logger.info("[query_ticket_by_card] name: " + identityCard.getName());
+        logger.info("[query_ticket_by_card] nation: " + identityCard.getNation());
+        logger.info("[query_ticket_by_card] birthDate: " + identityCard.getBirthDate());
+        logger.info("[query_ticket_by_card] address: " + identityCard.getAddress());
+        logger.info("[query_ticket_by_card] sex: " + identityCard.getSex());
+        logger.info("[query_ticket_by_card] key: " + key);
+        logger.info("IdentityCard : " + identityCard.toString());
+        //logger.info("[query_ticket] passWord: " + passWord);
         if (!machineService.isDeviceExist(deviceId)){
             return APIResponse.failed(ResponseCode.INVALID_MACHINE);
         }
@@ -178,8 +180,8 @@ public class TicketController {
 
     @RequestMapping(value = "/report_ticket", method = RequestMethod.POST)
     @ResponseBody
-    public APIResponse<Object> reportTicket(@RequestBody Map[] ticketInfoArray){
-        System.out.println("[report_ticket] apiResponse: " + ticketInfoArray);
+    public APIResponse<Object> reportTicket(@RequestBody APIResponse<List<ShenZhenTicketPrintBean>> ticketPrintAPIResponse){
+        logger.info("[report_ticket] apiResponse: {}", ticketPrintAPIResponse);
         return APIResponse.success();
     }
 
@@ -202,8 +204,7 @@ public class TicketController {
 
         List<ShenZhenTicketPrintBean> shenZhenTicketPrintBeans = new ArrayList<>();
         for (CoachTicket coachTicket: coachTickets){
-            ShenZhenTicketPrintBean sztpb =
-                    (ShenZhenTicketPrintBean)ticketBeanFacade.facade(StationType.SHENZHEN, coachTicket);
+            ShenZhenTicketPrintBean sztpb = TicketBeanFacade.facade(StationType.SHENZHEN, coachTicket);
             shenZhenTicketPrintBeans.add(sztpb);
         }
 

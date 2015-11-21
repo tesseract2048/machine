@@ -9,6 +9,7 @@ import com.qunar.coach.machine.core.model.ResponseCode;
 import com.szlw.station.dto.ret.ReturnMsg;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -26,6 +27,7 @@ public class ShenZhenController {
     private ShenZhenService shenZhenService;
 
     @RequestMapping("/search/tickets")
+    @ResponseBody
     public APIResponse<Map<String, Object>> searchTickets(String idCard, String password, String orderNo) {
         try {
             Preconditions.checkArgument(shenZhenService.validatorSearchTicketsParam(idCard, password, orderNo));
@@ -41,6 +43,7 @@ public class ShenZhenController {
     }
 
     @RequestMapping("/validator/ticket")
+    @ResponseBody
     public APIResponse<Map<String, Object>> validatorTicket(@RequestParam String ticketId) {
         try {
             Preconditions.checkArgument(shenZhenService.validatorTicketId(ticketId));
@@ -53,6 +56,7 @@ public class ShenZhenController {
     }
 
     @RequestMapping("/printed/ticket")
+    @ResponseBody
     public APIResponse<Map<String, Object>> printedTicket(@RequestParam String ticketId) {
         try {
             Preconditions.checkArgument(shenZhenService.validatorTicketId(ticketId));
