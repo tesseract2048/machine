@@ -56,7 +56,7 @@
 
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
 
     <session-config>
@@ -69,6 +69,6 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/404.html</location>
+        <location>/index.html</location>
     </error-page>
 </web-app>

@@ -23,7 +23,7 @@ import com.qunar.coach.machine.service.MachineService;
  * Created by niuli on 15-11-1.
  */
 @Controller
-@RequestMapping("/api/v1/machine")
+@RequestMapping("/v1/machine")
 @Slf4j
 public class MachineController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MachineController.class);

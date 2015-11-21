@@ -6,16 +6,14 @@ package com.qunar.coach.machine.webapp.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import com.qunar.coach.machine.dao.model.tables.pojos.Machine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.qunar.coach.machine.core.mode.ShenZhenTicketPrintBean;
 import com.qunar.coach.machine.core.mode.StationType;
@@ -35,7 +33,7 @@ import com.qunar.coach.machine.webapp.mocker.CoachTicketMocker;
  * Created by niuli on 15-10-21.
  */
 @Controller
-@RequestMapping(value = "/api/v1/ticket")
+@RequestMapping(value = "/v1/ticket")
 public class TicketController {
     @Autowired
     private PersonIDService personIDService;
@@ -178,11 +176,11 @@ public class TicketController {
         return APIResponse.success(CoachTicketMocker.mockList());
     }
 
-    @RequestMapping(value = "/report_ticket")
+    @RequestMapping(value = "/report_ticket", method = RequestMethod.POST)
     @ResponseBody
-    public APIResponse<Object> reportTicket(APIResponse<Object> apiResponse){
-        System.out.println("[report_ticket] apiResponse: " + apiResponse.getT().toString());
-        return APIResponse.success(apiResponse.getT());
+    public APIResponse<Object> reportTicket(@RequestBody Map[] ticketInfoArray){
+        System.out.println("[report_ticket] apiResponse: " + ticketInfoArray);
+        return APIResponse.success();
     }
 
     @RequestMapping(value = "/query_by_number", method = RequestMethod.GET)

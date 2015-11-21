@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by niuli on 15-10-20.
  */
 @Controller
-@RequestMapping("/api")
+@RequestMapping
 public class EchoController {
 
     @Autowired

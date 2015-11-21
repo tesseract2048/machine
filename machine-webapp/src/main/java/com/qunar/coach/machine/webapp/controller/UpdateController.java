@@ -22,7 +22,7 @@ public class UpdateController {
     @Resource
     private MachineService machineService;
 
-    @RequestMapping("/api/v1/update")
+    @RequestMapping("/v1/update")
     @ResponseBody
     public String getUpdateInfo(
             @RequestParam(value = RequestParameter.VERSION,
