@@ -2,6 +2,8 @@ package com.qunar.coach.machine.core.mode;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.qunar.coach.machine.core.model.CoachTicket;
+
 /**
  * Created by niuli on 11/9/15.
  */
@@ -178,5 +180,23 @@ public class ShenZhenTicketPrintBean implements TicketPrintBean {
                 .append("passengerName", passengerName)
                 .append("idCard", idCard)
                 .toString();
+    }
+
+    @Override
+    public void acceptCoachTicket(StationType stationType, CoachTicket coachTicket) {
+        this.setDestination(coachTicket.getCoachTo());
+        this.setLine(coachTicket.getCoachFrom() + "->" + coachTicket.getCoachTo());
+        this.setPrice(coachTicket.getTicketPrice());
+        this.setCheck_port_number("12");
+        this.setDestination("百色");
+        this.setSell_ticket_place("宝安售票口");
+        this.setTake_place("深圳");
+        this.setType("普通");
+        this.setStart_time("16:35");
+        this.setPassengerName("杨幂");
+        this.setTicketId("1234234223");
+        this.setTicket_number("BA-1234");
+        this.setNumber("Rout-4440");
+        this.setSeat_number("19");
     }
 }

@@ -1,5 +1,7 @@
 package com.qunar.coach.machine.core.mode;
 
+import com.qunar.coach.machine.core.model.CoachTicket;
+
 /**
  * Created by niuli on 11/9/15.
  */
@@ -175,5 +177,14 @@ public class YunnanTicketPrintBean implements TicketPrintBean {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public void acceptCoachTicket(StationType stationType,
+            CoachTicket coachTicket) {
+        this.setRoute(
+                coachTicket.getCoachFrom() + "->" + coachTicket.getCoachTo());
+        this.setDate(coachTicket.getCoachStartTime());
+        this.setExecutePrice(coachTicket.getTicketPrice());
     }
 }

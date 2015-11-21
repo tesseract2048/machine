@@ -201,7 +201,7 @@ public class TicketController {
         if (!machineService.isDeviceExist(deviceId)){
             return APIResponse.failed(ResponseCode.INVALID_MACHINE);
         }
-
+        String printMode = machineService.getMachine(deviceId).getMachinePrintMode();
 
         //personIDService.addPerson(identityCard);
 
@@ -210,8 +210,8 @@ public class TicketController {
 
         List<TicketPrintBean> ticketPrintBeans = new ArrayList<>();
         for (CoachTicket coachTicket: coachTickets){
-            TicketPrintBean sztpb = TicketBeanFacade.facade(StationType.SHENZHEN, coachTicket);
-            ticketPrintBeans.add(sztpb);
+            TicketPrintBean tpb = TicketBeanFacade.facade(StationType.valueOf(printMode), coachTicket);
+            ticketPrintBeans.add(tpb);
         }
 
         return APIResponse.success(ticketPrintBeans);

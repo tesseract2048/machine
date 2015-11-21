@@ -1,7 +1,12 @@
 package com.qunar.coach.machine.service.facade;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.ImmutableMap;
 import com.qunar.coach.machine.core.mode.ShenZhenTicketPrintBean;
 import com.qunar.coach.machine.core.mode.StationType;
+import com.qunar.coach.machine.core.mode.TicketPrintBean;
 import com.qunar.coach.machine.core.mode.YunnanTicketPrintBean;
 import com.qunar.coach.machine.core.model.CoachTicket;
 
@@ -10,35 +15,33 @@ import com.qunar.coach.machine.core.model.CoachTicket;
  */
 public class TicketBeanFacade {
 
-    public static <T> T facade(StationType stationType, CoachTicket coachTicket){
-        if (stationType.equals(StationType.SHENZHEN)){
-            ShenZhenTicketPrintBean ticketPrintBean = new ShenZhenTicketPrintBean();
-            ticketPrintBean.setDestination(coachTicket.getCoachTo());
-            ticketPrintBean.setLine(coachTicket.getCoachFrom() + "->" + coachTicket.getCoachTo());
-            ticketPrintBean.setPrice(coachTicket.getTicketPrice());
-            ticketPrintBean.setCheck_port_number("12");
-            ticketPrintBean.setDestination("百色");
-            ticketPrintBean.setSell_ticket_place("宝安售票口");
-            ticketPrintBean.setTake_place("深圳");
-            ticketPrintBean.setType("普通");
-            ticketPrintBean.setStart_time("16:35");
-            ticketPrintBean.setPassengerName("杨幂");
-            ticketPrintBean.setTicketId("1234234223");
-            ticketPrintBean.setTicket_number("BA-1234");
-            ticketPrintBean.setNumber("Rout-4440");
-            ticketPrintBean.setSeat_number("19");
+    protected final static Logger logger = LoggerFactory
+            .getLogger(TicketBeanFacade.class);
 
-            return (T) ticketPrintBean;
+    static ImmutableMap<StationType, Class<? extends TicketPrintBean>> tpbMapping =
+            ImmutableMap
+                    .<StationType, Class<? extends TicketPrintBean>>builder()
+                    .put(StationType.SHENZHEN, ShenZhenTicketPrintBean.class)
+                    .put(StationType.YUNNAN, YunnanTicketPrintBean.class)
+                    .build();
+
+    public static TicketPrintBean facade(StationType stationType,
+            CoachTicket coachTicket) {
+        TicketPrintBean tpb = null;
+        if (!tpbMapping.containsKey(stationType)) {
+            logger.error("Not supported station type: " + stationType);
+            return null;
         }
-        else if (stationType.equals(StationType.YUNNAN)){
-            YunnanTicketPrintBean yunnanTicketPrintBean = new YunnanTicketPrintBean();
-            yunnanTicketPrintBean.setRoute(coachTicket.getCoachFrom() + "->" + coachTicket.getCoachTo());
-            yunnanTicketPrintBean.setDate(coachTicket.getCoachStartTime());
-            yunnanTicketPrintBean.setExecutePrice(coachTicket.getTicketPrice());
-
-            return (T) yunnanTicketPrintBean;
+        try {
+            tpb = tpbMapping.get(stationType).newInstance();
+        } catch (InstantiationException e) {
+            logger.error("", e);
+        } catch (IllegalAccessException e) {
+            logger.error("", e);
         }
-
-        return null;
+        if (tpb != null) {
+            tpb.acceptCoachTicket(stationType, coachTicket);
+        }
+        return tpb;
     }
 }
