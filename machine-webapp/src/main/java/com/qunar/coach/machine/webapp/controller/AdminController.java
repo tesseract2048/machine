@@ -1,12 +1,13 @@
 package com.qunar.coach.machine.webapp.controller;
 
-import com.qunar.coach.machine.core.model.APIResponse;
-import com.qunar.coach.machine.dao.model.Machine;
-import org.jooq.DSLContext;
-import org.jooq.Field;
-import org.jooq.Record;
-import org.jooq.Table;
-import org.jooq.UpdatableRecord;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+
+import org.jooq.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.qunar.coach.machine.core.model.APIResponse;
+import com.qunar.coach.machine.dao.model.Machine;
 
 /**
  * Created by niuli on 15-10-21.
@@ -27,7 +26,8 @@ import java.util.Map;
 @Controller
 public class AdminController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AdminController.class);
+    private static final Logger LOG = LoggerFactory
+            .getLogger(AdminController.class);
 
     @Autowired
     private DSLContext context;
@@ -43,15 +43,18 @@ public class AdminController {
     }
 
     @RequestMapping("/api/v1/admin/{model}")
+    @ResponseBody
     public APIResponse<List<Map>> listEntity(
             @PathVariable(value = "model") String model) {
         assert (tables != null);
-        List<Map> records = context.selectFrom(tables.get(model.toLowerCase())).fetchMaps();
+        List<Map> records = context.selectFrom(tables.get(model.toLowerCase()))
+                .fetchMaps();
 
         return APIResponse.success(records);
     }
 
     @RequestMapping(value = "/api/v1/admin/{model}/{id}", method = RequestMethod.GET)
+    @ResponseBody
     public APIResponse<Map> getEntity(
             @PathVariable(value = "model") String model,
             @PathVariable(value = "id") Integer id) {
@@ -65,18 +68,21 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/api/v1/admin/{model}/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
     public APIResponse<Object> removeEntity(
             @PathVariable(value = "model") String model,
             @PathVariable(value = "id") Integer id) {
         assert (tables != null);
         Table table = tables.get(model.toLowerCase());
-        int rowsAffected = context.delete(table).where(table.getIdentity().getField().eq(id)).execute();
+        int rowsAffected = context.delete(table)
+                .where(table.getIdentity().getField().eq(id)).execute();
 
         return APIResponse.success();
 
     }
 
     @RequestMapping(value = "/api/v1/admin/{model}", method = RequestMethod.PUT)
+    @ResponseBody
     public APIResponse<Object> newEntity(
             @PathVariable(value = "model") String model,
             HttpServletRequest request) {
@@ -95,6 +101,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/api/v1/admin/{model}/{id}", method = RequestMethod.POST)
+    @ResponseBody
     public APIResponse<Object> modifyEntity(
             @PathVariable(value = "model") String model,
             @PathVariable(value = "id") Integer id,
